@@ -383,7 +383,7 @@
 
 #####    要传递一个泛型参数 T （MocoViewHolder），也就是你自定义的自定义viewholder；
 
-#####    数据集的实体类 B( MocoBean)，也就是你的实体类
+#####    数据集的实体类 B( MocoBean)，也就是你的实体类，如果没有实体类，传Void即可
 
 #####    示例代码：MocoViewHolderHelper
 
