@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 
 import java.io.Serializable;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-
 
 /**
  * Created by smart on 2017/4/24.
@@ -29,7 +27,7 @@ public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder>  ex
      * @param itemViewLayout （item的布局文件）
      * @param viewHolderCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context, BaseBean baseBean,Integer listSize,int itemViewLayout, ViewHolderCallback viewHolderCallback) {
+    public CommonAdapter(Context context, BaseBean baseBean, Integer listSize, int itemViewLayout, ViewHolderCallback viewHolderCallback) {
         mContext = context;
         mBaseBean = baseBean;
         mItemViewLayout = itemViewLayout;
