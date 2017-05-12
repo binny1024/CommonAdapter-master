@@ -195,8 +195,8 @@
 ### 4、给AdapterView(如 ListView)配置 Adapter
 
  CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder,BEAN extends CommonAdapter.BaseBean>时，
-
- 	mListView.setAdapter(new CommonAdapter<MutilObjViewHolder,BeanMutilObj>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
+#此次更新后的用法：
+ 	 mListView.setAdapter(new CommonAdapter(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
 
 要传递两个泛型参数，分别是：
 
