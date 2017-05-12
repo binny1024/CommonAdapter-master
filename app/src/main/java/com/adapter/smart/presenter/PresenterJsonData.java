@@ -1,10 +1,10 @@
 package com.adapter.smart.presenter;
 
-import com.adapter.smart.common.CommonAdapter;
 import com.adapter.smart.model.IDataResult;
 import com.adapter.smart.model.IModelJsonData;
 import com.adapter.smart.model.ModelJsonData;
 import com.adapter.smart.view.IShowData;
+import com.smart.holder_library.CommonAdapter;
 
 /**
  * Created by smart on 2017/4/27.

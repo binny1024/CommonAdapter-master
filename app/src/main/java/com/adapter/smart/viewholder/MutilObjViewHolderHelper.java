@@ -23,6 +23,7 @@ import java.util.List;
 public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderCallback<MutilObjViewHolder,BeanMutilObj> {
 
     private List<BeanMutilObj.DataBean> mDataBeanList;
+
     @Override
     public CommonAdapter.IBaseViewHolder initViewHolder(MutilObjViewHolder viewHolder, @NonNull View convertView) {
         viewHolder = new MutilObjViewHolder();
@@ -36,7 +37,7 @@ public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderCallbac
     }
 
     @Override
-    public void bindDataToView(Context context, BeanMutilObj beanDataList, MutilObjViewHolder viewHolder, int position) {
+    public void bindDataToView(Context context, List<CommonAdapter.BaseBean> baseBeanList, BeanMutilObj beanDataList, MutilObjViewHolder viewHolder, int position) {
         if (mDataBeanList == null) {
             mDataBeanList =   beanDataList.getData();
         }
@@ -45,5 +46,6 @@ public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderCallbac
         viewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());
         UtilImageloader.setImage(context,mDataBeanList.get(position).getPicSmall(),viewHolder.picSmall);
     }
+
 
 }

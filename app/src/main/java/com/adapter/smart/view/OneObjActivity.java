@@ -1,6 +1,7 @@
 package com.adapter.smart.view;
 
 import com.adapter.smart.R;
+import com.adapter.smart.bean.BeanNoObj;
 import com.adapter.smart.bean.BeanOneObj;
 import com.adapter.smart.presenter.PresenterJsonData;
 import com.adapter.smart.viewholder.MutilObjViewHolder;
@@ -19,7 +20,7 @@ public class OneObjActivity extends BaseActivity implements IShowData<BeanOneObj
 
     @Override
     public void showList(BeanOneObj bean) {
-        mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext, bean,null, R.layout.no_obj_item, new OneObjViewHolderHelper()));
+        mListView.setAdapter(new CommonAdapter<MutilObjViewHolder,BeanNoObj>(mContext, bean,null, R.layout.no_obj_item, new OneObjViewHolderHelper()));
     }
 
     @Override

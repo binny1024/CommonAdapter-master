@@ -9,6 +9,8 @@ import com.adapter.smart.bean.BeanOneObj;
 import com.smart.holder_library.CommonAdapter;
 import com.adapter.smart.utils.UtilWidget;
 
+import java.util.List;
+
 /**
  * Created by smart on 2017/4/26.
  */
@@ -26,7 +28,7 @@ public class OneObjViewHolderHelper implements CommonAdapter.ViewHolderCallback<
     }
 
     @Override
-    public void bindDataToView(Context context, BeanOneObj beanDataList, NoObjViewHolder viewHolder, int position) {
+    public void bindDataToView(Context context, List<CommonAdapter.BaseBean> baseBeanList, BeanOneObj beanDataList, NoObjViewHolder viewHolder, int position) {
         viewHolder.name.setText("名字："+ beanDataList.getData().getName());
         viewHolder.age.setText("年龄："+ beanDataList.getData().getAge());
         viewHolder.status.setText("状态："+ beanDataList.getStatus());

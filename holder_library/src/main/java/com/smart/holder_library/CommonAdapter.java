@@ -7,18 +7,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
  * Created by smart on 2017/4/24.
  */
 
-public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder>  extends BaseAdapter{
+public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder,BEAN extends CommonAdapter.BaseBean>  extends BaseAdapter{
     private final int mItemViewLayout;//item布局文件
     protected Context mContext;
     private ViewHolder mBaseViewHolder;
     private ViewHolderCallback mViewHolderCallback;
     private BaseBean mBaseBean;
+    private List<BEAN> mBaseBeanList;
     private int listSize;
 
     /**
@@ -40,6 +42,18 @@ public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder>  ex
 
     }
 
+    public CommonAdapter(Context context, List<BEAN> baseBeanList, Integer listSize, int itemViewLayout, ViewHolderCallback viewHolderCallback) {
+        mContext = context;
+        mBaseBeanList = baseBeanList;
+        mItemViewLayout = itemViewLayout;
+        mViewHolderCallback = viewHolderCallback;
+        if (listSize != null) {
+            this.listSize = listSize;
+        }else {
+            this.listSize = 1;
+        }
+
+    }
     @Override
     public int getCount() {
         return listSize;
@@ -64,7 +78,7 @@ public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder>  ex
         }else {
             mBaseViewHolder = (ViewHolder)convertView.getTag();
         }
-        mViewHolderCallback.bindDataToView(mContext,mBaseBean,mBaseViewHolder,position);
+        mViewHolderCallback.bindDataToView(mContext,mBaseBeanList,mBaseBean,mBaseViewHolder,position);
         return convertView;
     }
 
@@ -78,7 +92,7 @@ public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder>  ex
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindDataToView(Context context, BaseBean beanDataList, BaseViewHolder viewHolder, int position);
+       void bindDataToView(Context context, List<CommonAdapter.BaseBean> baseBeanList, BaseBean beanDataList, BaseViewHolder viewHolder, int position);
     }
 
     /*

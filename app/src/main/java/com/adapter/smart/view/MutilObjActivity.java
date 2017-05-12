@@ -26,7 +26,7 @@ public class MutilObjActivity extends BaseActivity  implements IShowData<BeanMut
     public void showList(BeanMutilObj beanMutilData) {
         mAnimationDrawable.stop();
         mImageView.setVisibility(View.GONE);
-        mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
+        mListView.setAdapter(new CommonAdapter<MutilObjViewHolder,BeanMutilObj>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
     }
 
     @Override
