@@ -1,5 +1,5 @@
-# 具体用法请下载demo查看里面的注释说明（MVP模式的请切换分支，有较大改动）
-    引用方式 compile 'com.smart.holder_library:holder_library:1.0.0'
+# 具体用法请下载demo查看里面的注释说明
+    引用方式 compile 'com.smart.holder_library:holder_library:1.0.3'
 
 
 # 使用方法
