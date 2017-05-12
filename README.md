@@ -197,15 +197,9 @@
 #此次更新后的用法：
  	 mListView.setAdapter(new CommonAdapter(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
 
-要传递两个泛型参数，分别是：
+参数列表分别为 ：
 
-4.1、实现了 CommonAdapter.IBaseViewHolder 接口的 MutilObjViewHolder 和 BEAN（BeanMutilObj）；
-
-4.2、实现了 CommonAdapter.BaseBean 接口的BeanMutilObj；
-
-4.3、参数列表分别为 ：
-
-4.3.1、 第一种构造函数（本demo使用的就是这种）
+4.1、 第一种构造函数（本demo使用的就是这种）
 
 
     /**
@@ -216,7 +210,7 @@
      * @param viewHolderCallback （viewholder的接口）
      */
 
-4.3.2、第二种构造函数（自己的项目中用到了这个）
+4.2、第二种构造函数（自己的项目中用到了这个）
 
     /**
      * @param context 上下文
