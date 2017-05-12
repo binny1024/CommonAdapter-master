@@ -14,13 +14,13 @@ import java.util.List;
  * Created by smart on 2017/4/24.
  */
 
-public class CommonAdapter<VIEWHOLDER extends CommonAdapter.IBaseViewHolder,BEAN extends CommonAdapter.BaseBean>  extends BaseAdapter{
+public class CommonAdapter extends BaseAdapter{
     private final int mItemViewLayout;//item布局文件
     protected Context mContext;
-    private VIEWHOLDER mBaseViewHolder;
+    private IBaseViewHolder mBaseViewHolder;
     private ViewHolderHelperCallback mViewHolderCallback;
     private BaseBean mBaseBean;
-    private List<BEAN> mBaseBeanList;
+    private List<BaseBean> mBaseBeanList;
     private int listSize;
 
     /**
@@ -50,7 +50,7 @@ public class CommonAdapter<VIEWHOLDER extends CommonAdapter.IBaseViewHolder,BEAN
      * @param itemViewLayout （item的布局文件）
      * @param viewHolderCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context, List<BEAN> baseBeanList, Integer listSize, int itemViewLayout, ViewHolderHelperCallback viewHolderCallback) {
+    public CommonAdapter(Context context, List<BaseBean> baseBeanList, Integer listSize, int itemViewLayout, ViewHolderHelperCallback viewHolderCallback) {
         mContext = context;
         mBaseBeanList = baseBeanList;
         mItemViewLayout = itemViewLayout;
@@ -81,26 +81,26 @@ public class CommonAdapter<VIEWHOLDER extends CommonAdapter.IBaseViewHolder,BEAN
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(mItemViewLayout,parent,false);
-            mBaseViewHolder = (VIEWHOLDER) mViewHolderCallback.initViewHolder(mBaseViewHolder,convertView);
+            mBaseViewHolder =  mViewHolderCallback.initViewHolder(mBaseViewHolder,convertView);
             convertView.setTag(mBaseViewHolder);
         }else {
-            mBaseViewHolder = (VIEWHOLDER)convertView.getTag();
+            mBaseViewHolder = (IBaseViewHolder)convertView.getTag();
         }
         mViewHolderCallback.bindDataToView(mContext,mBaseBeanList,mBaseBean,mBaseViewHolder,position);
         return convertView;
     }
 
 
-    public interface ViewHolderHelperCallback<BaseViewHolder extends IBaseViewHolder,BaseBean>{
+    public interface ViewHolderHelperCallback<BASEVIEWHOLDER extends IBaseViewHolder, BASEBEAN extends BaseBean>{
         /** 用于初始化ViewHolder
          * @param convertView
          */
-        IBaseViewHolder initViewHolder(BaseViewHolder viewHolder, View convertView);
+        IBaseViewHolder initViewHolder(BASEVIEWHOLDER viewHolder, View convertView);
 
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindDataToView(Context context, List<CommonAdapter.BaseBean> baseBeanList, BaseBean beanDataList, BaseViewHolder viewHolder, int position);
+       void bindDataToView(Context context, List<CommonAdapter.BaseBean> baseBeanList, BASEBEAN beanDataList, BASEVIEWHOLDER viewHolder, int position);
     }
 
     /*

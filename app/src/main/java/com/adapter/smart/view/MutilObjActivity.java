@@ -6,7 +6,6 @@ import android.widget.Toast;
 import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanMutilObj;
 import com.adapter.smart.presenter.PresenterJsonData;
-import com.adapter.smart.viewholder.MutilObjViewHolder;
 import com.adapter.smart.viewholder.MutilObjViewHolderHelper;
 import com.smart.holder_library.CommonAdapter;
 
@@ -26,7 +25,7 @@ public class MutilObjActivity extends BaseActivity  implements IShowData<BeanMut
     public void showList(BeanMutilObj beanMutilData) {
         mAnimationDrawable.stop();
         mImageView.setVisibility(View.GONE);
-        mListView.setAdapter(new CommonAdapter<MutilObjViewHolder,BeanMutilObj>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
+        mListView.setAdapter(new CommonAdapter(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
     }
 
     @Override

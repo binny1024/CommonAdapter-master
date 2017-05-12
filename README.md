@@ -221,7 +221,7 @@
 
     /**
      * @param context 上下文
-     * @param baseBeanList 数据集（list的形式传递过来）
+     * @param baseBeanList 数据集（list<BaseBean>的形式传递过来，里面是你的实体类）
      * @param listSize  数据集的大小
      * @param itemViewLayout （item的布局文件）
      * @param viewHolderCallback （viewholder的接口）
@@ -257,7 +257,7 @@
 
 	    @Override
 	    public void showList(BeanMutilObj beanMutilData) {
-	         mListView.setAdapter(new CommonAdapter<MutilObjViewHolder,BeanMutilObj>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
+	           mListView.setAdapter(new CommonAdapter(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
 	    }
 
 	    @Override
