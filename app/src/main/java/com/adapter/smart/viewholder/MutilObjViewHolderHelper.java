@@ -20,7 +20,7 @@ import java.util.List;
 * 实例化你的viewholder
 * 将数据和viewholder的控件绑定
 * */
-public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderCallback<MutilObjViewHolder,BeanMutilObj> {
+public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderHelperCallback<MutilObjViewHolder,BeanMutilObj> {
 
     private List<BeanMutilObj.DataBean> mDataBeanList;
 

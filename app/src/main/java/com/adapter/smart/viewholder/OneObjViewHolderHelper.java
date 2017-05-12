@@ -15,7 +15,7 @@ import java.util.List;
  * Created by smart on 2017/4/26.
  */
 
-public class OneObjViewHolderHelper implements CommonAdapter.ViewHolderCallback<NoObjViewHolder,BeanOneObj> {
+public class OneObjViewHolderHelper implements CommonAdapter.ViewHolderHelperCallback<NoObjViewHolder,BeanOneObj> {
     @Override
     public CommonAdapter.IBaseViewHolder  initViewHolder(NoObjViewHolder viewHolder, @NonNull View convertView) {
         viewHolder = new NoObjViewHolder();

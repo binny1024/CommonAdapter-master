@@ -14,11 +14,11 @@ import java.util.List;
  * Created by smart on 2017/4/24.
  */
 
-public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder,BEAN extends CommonAdapter.BaseBean>  extends BaseAdapter{
+public class CommonAdapter<VIEWHOLDER extends CommonAdapter.IBaseViewHolder,BEAN extends CommonAdapter.BaseBean>  extends BaseAdapter{
     private final int mItemViewLayout;//item布局文件
     protected Context mContext;
-    private ViewHolder mBaseViewHolder;
-    private ViewHolderCallback mViewHolderCallback;
+    private VIEWHOLDER mBaseViewHolder;
+    private ViewHolderHelperCallback mViewHolderCallback;
     private BaseBean mBaseBean;
     private List<BEAN> mBaseBeanList;
     private int listSize;
@@ -26,10 +26,11 @@ public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder,BEAN
     /**
      * @param context 上下文
      * @param baseBean 数据集
+     * @param listSize  数据集的大小
      * @param itemViewLayout （item的布局文件）
      * @param viewHolderCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context, BaseBean baseBean, Integer listSize, int itemViewLayout, ViewHolderCallback viewHolderCallback) {
+    public CommonAdapter(Context context, BaseBean baseBean, Integer listSize, int itemViewLayout, ViewHolderHelperCallback viewHolderCallback) {
         mContext = context;
         mBaseBean = baseBean;
         mItemViewLayout = itemViewLayout;
@@ -42,7 +43,14 @@ public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder,BEAN
 
     }
 
-    public CommonAdapter(Context context, List<BEAN> baseBeanList, Integer listSize, int itemViewLayout, ViewHolderCallback viewHolderCallback) {
+    /**
+     * @param context 上下文
+     * @param baseBeanList 数据集（list的形式传递过来）
+     * @param listSize  数据集的大小
+     * @param itemViewLayout （item的布局文件）
+     * @param viewHolderCallback （viewholder的接口）
+     */
+    public CommonAdapter(Context context, List<BEAN> baseBeanList, Integer listSize, int itemViewLayout, ViewHolderHelperCallback viewHolderCallback) {
         mContext = context;
         mBaseBeanList = baseBeanList;
         mItemViewLayout = itemViewLayout;
@@ -73,17 +81,17 @@ public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder,BEAN
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(mItemViewLayout,parent,false);
-            mBaseViewHolder = (ViewHolder) mViewHolderCallback.initViewHolder(mBaseViewHolder,convertView);
+            mBaseViewHolder = (VIEWHOLDER) mViewHolderCallback.initViewHolder(mBaseViewHolder,convertView);
             convertView.setTag(mBaseViewHolder);
         }else {
-            mBaseViewHolder = (ViewHolder)convertView.getTag();
+            mBaseViewHolder = (VIEWHOLDER)convertView.getTag();
         }
         mViewHolderCallback.bindDataToView(mContext,mBaseBeanList,mBaseBean,mBaseViewHolder,position);
         return convertView;
     }
 
 
-    public interface ViewHolderCallback<BaseViewHolder extends IBaseViewHolder,BaseBean>{
+    public interface ViewHolderHelperCallback<BaseViewHolder extends IBaseViewHolder,BaseBean>{
         /** 用于初始化ViewHolder
          * @param convertView
          */

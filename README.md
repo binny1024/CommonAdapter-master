@@ -1,5 +1,277 @@
 # 具体用法请下载demo查看里面的注释说明（MVP模式的请切换分支，有较大改动）
     引用方式 compile 'com.smart.holder_library:holder_library:1.0.0'
+
+
+# 使用方法
+### 1、编写 JavaBean（其他形式的json数据使用，请下载demo查看）实现BassBean接口即可。
+
+	package com.adapter.smart.bean;
+
+	import com.adapter.smart.common.BaseBean;
+
+	import java.util.List;
+
+	/**
+	 * Created by smart on 2017/4/24.
+	 */
+
+	public class BeanMutilObj implements BaseBean{
+
+
+    private int status;
+    private String msg;
+    private List<DataBean> data;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public List<DataBean> getData() {
+        return data;
+    }
+
+    public void setData(List<DataBean> data) {
+        this.data = data;
+    }
+
+    public static class DataBean {
+        /**
+         * id : 1
+         * name : Tony老师聊shell——环境变量配置文件
+         * picSmall : http://img.mukewang.com/55237dcc0001128c06000338-300-170.jpg
+         * picBig : http://img.mukewang.com/55237dcc0001128c06000338.jpg
+         * description : 为你带来shell中的环境变量配置文件
+         * learner : 12312
+         */
+
+        private int id;
+        private String name;
+        private String picSmall;
+        private String picBig;
+        private String description;
+        private int learner;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getPicSmall() {
+            return picSmall;
+        }
+
+        public void setPicSmall(String picSmall) {
+            this.picSmall = picSmall;
+        }
+
+        public String getPicBig() {
+            return picBig;
+        }
+
+        public void setPicBig(String picBig) {
+            this.picBig = picBig;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public int getLearner() {
+            return learner;
+        }
+
+        public void setLearner(int learner) {
+            this.learner = learner;
+        }
+    }
+}
+
+### 2、自定义viewholder
+
+ 这一步跟你用传统的方式是一样的，里面封装了 item 控件的引用；
+
+   但是，要实现 CommonAdapter.IBaseViewHolder 接口。
+
+   示例代码：MocoViewHolder
+
+    public class MocoViewHolder implements CommonAdapter.IBaseViewHolder {
+        public TextView name;
+        public TextView description;
+        public TextView learner;
+        public ImageView picSmall;
+    }
+
+### 3、自定义 MutilObjViewHolderHelper
+
+#####  继承自CommonAdapter.ViewHolderHelperCallback< T，B >，来实现 viewholder的实例化和数据绑定。
+
+#####    要传递一个泛型参数 T （MocoViewHolder），也就是你自定义的自定义viewholder；
+
+#####    数据集的实体类 B( MocoBean)，也就是你的实体类，如果没有实体类，传Void即可
+
+#####    示例代码：MocoViewHolderHelper
+
+
+
+	import android.content.Context;
+	import android.support.annotation.NonNull;
+	import android.view.View;
+
+	import com.adapter.smart.R;
+	import com.adapter.smart.bean.BeanMutilObj;
+	import com.adapter.smart.utils.UtilImageloader;
+	import com.adapter.smart.utils.UtilWidget;
+	import com.smart.holder_library.CommonAdapter;
+
+	import java.util.List;
+
+	/**
+	 * Created by smart on 2017/4/26.
+	 */
+
+	/*
+	* 实例化你的viewholder
+	* 将数据和viewholder的控件绑定
+	* */
+	public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderHelperCallback<MutilObjViewHolder,BeanMutilObj> {
+
+	    private List<BeanMutilObj.DataBean> mDataBeanList;
+
+	    @Override
+	    public CommonAdapter.IBaseViewHolder initViewHolder(MutilObjViewHolder viewHolder, @NonNull View convertView) {
+	        viewHolder = new MutilObjViewHolder();
+
+	        viewHolder.name = UtilWidget.getView(convertView, R.id.id_name);
+	        viewHolder.description = UtilWidget.getView(convertView,R.id.id_description);
+	        viewHolder.learner = UtilWidget.getView(convertView,R.id.id_learner);
+	        viewHolder.picSmall = UtilWidget.getView(convertView,R.id.id_picSmall);
+
+	        return viewHolder;
+	    }
+
+	    @Override
+	    public void bindDataToView(Context context, List<CommonAdapter.BaseBean> baseBeanList, BeanMutilObj beanDataList, MutilObjViewHolder viewHolder, int position) {
+	        if (mDataBeanList == null) {
+	            mDataBeanList =   beanDataList.getData();
+	        }
+	        viewHolder.name.setText(mDataBeanList.get(position).getName());//这个地方自己可以优化的，不必要每次获取list
+	        viewHolder.description.setText(mDataBeanList.get(position).getDescription());
+	        viewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());
+	        UtilImageloader.setImage(context,mDataBeanList.get(position).getPicSmall(),viewHolder.picSmall);
+	    }
+
+
+	}
+
+
+
+### 4、给AdapterView(如 ListView)配置 Adapter
+
+ CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder,BEAN extends CommonAdapter.BaseBean>时，
+
+ 	mListView.setAdapter(new CommonAdapter<MutilObjViewHolder,BeanMutilObj>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
+
+要传递两个泛型参数，分别是：
+
+4.1、实现了 CommonAdapter.IBaseViewHolder 接口的 MutilObjViewHolder 和 BEAN（BeanMutilObj）；
+
+4.2、实现了 CommonAdapter.BaseBean 接口的BeanMutilObj；
+
+4.3、参数列表分别为 ：
+
+4.3.1、 第一种构造函数
+
+
+    /**
+     * @param context 上下文
+     * @param baseBean 数据集（直接以bean的形式传递过来）
+     * @param listSize  数据集的大小
+     * @param itemViewLayout （item的布局文件）
+     * @param viewHolderCallback （viewholder的接口）
+     */
+
+4.3.2、第二种构造函数
+
+
+    /**
+     * @param context 上下文
+     * @param baseBeanList 数据集（list的形式传递过来）
+     * @param listSize  数据集的大小
+     * @param itemViewLayout （item的布局文件）
+     * @param viewHolderCallback （viewholder的接口）
+     */
+
+
+
+
+示例代码：MutilObjActivity
+
+	package com.adapter.smart.view;
+
+	import android.widget.Toast;
+
+	import com.adapter.smart.R;
+	import com.adapter.smart.bean.BeanMutilObj;
+	import com.adapter.smart.common.CommonAdapter;
+	import com.adapter.smart.presenter.PresenterJsonData;
+	import com.adapter.smart.viewholder.MutilObjViewHolder;
+	import com.adapter.smart.viewholder.MutilObjViewHolderHelper;
+
+	import static com.adapter.smart.constants.ConstantUrl.MUTIL_OBJECT;
+	import static com.adapter.smart.constants.DataType.DATA_TYPE_MUTIL;
+
+	public class MutilObjActivity extends BaseActivity  implements IShowData<BeanMutilObj> {
+
+	    @Override
+	    public void initPresenter() {
+		//       mListView = UtilWidget.getView(this,R.id.id_listview);
+	        new PresenterJsonData(this).getJsonLocal(DATA_TYPE_MUTIL,MUTIL_OBJECT);//取本地字符串
+		//        new PresenterJsonData(this).getJsonNet(DATA_TYPE_MUTIL,MOCO_URL);//取本地字符串
+	    }
+
+	    @Override
+	    public void showList(BeanMutilObj beanMutilData) {
+	         mListView.setAdapter(new CommonAdapter<MutilObjViewHolder,BeanMutilObj>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
+	    }
+
+	    @Override
+	    public void showError(String msg) {
+	        Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
+	    }
+	}
+
+
+
+![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
+![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
+
 ##测试数据
 ###### 来自慕课网的一个接口,不想去请求网络的话，直接把下面的作为作为字符串使用;
 ###### 示例中两种方式都给出了，注释了网络请求数据的代码，使用的本地字符串。其实是一样的。
@@ -250,236 +522,3 @@
 		],
 		"msg": "成功"
 	}
-
-# 使用方法
-### 1、编写 JavaBean（其他形式的json数据使用，请下载demo查看）实现BassBean接口即可。
-
-	package com.adapter.smart.bean;
-
-	import com.adapter.smart.common.BaseBean;
-
-	import java.util.List;
-
-	/**
-	 * Created by smart on 2017/4/24.
-	 */
-
-	public class BeanMutilObj implements BaseBean{
-
-
-    private int status;
-    private String msg;
-    private List<DataBean> data;
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public List<DataBean> getData() {
-        return data;
-    }
-
-    public void setData(List<DataBean> data) {
-        this.data = data;
-    }
-
-    public static class DataBean {
-        /**
-         * id : 1
-         * name : Tony老师聊shell——环境变量配置文件
-         * picSmall : http://img.mukewang.com/55237dcc0001128c06000338-300-170.jpg
-         * picBig : http://img.mukewang.com/55237dcc0001128c06000338.jpg
-         * description : 为你带来shell中的环境变量配置文件
-         * learner : 12312
-         */
-
-        private int id;
-        private String name;
-        private String picSmall;
-        private String picBig;
-        private String description;
-        private int learner;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getPicSmall() {
-            return picSmall;
-        }
-
-        public void setPicSmall(String picSmall) {
-            this.picSmall = picSmall;
-        }
-
-        public String getPicBig() {
-            return picBig;
-        }
-
-        public void setPicBig(String picBig) {
-            this.picBig = picBig;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public int getLearner() {
-            return learner;
-        }
-
-        public void setLearner(int learner) {
-            this.learner = learner;
-        }
-    }
-}
-
-### 2、自定义viewholder
-
- 这一步跟你用传统的方式是一样的，里面封装了 item 控件的引用；
-
-   但是，要实现 CommonAdapter.IBaseViewHolder 接口。
-
-   示例代码：MocoViewHolder
-
-    public class MocoViewHolder implements CommonAdapter.IBaseViewHolder {
-        public TextView name;
-        public TextView description;
-        public TextView learner;
-        public ImageView picSmall;
-    }
-
-### 3、自定义 MutilObjViewHolderHelper
-
-#####  继承自CommonAdapter.ViewHolderCallback< T，B >，来实现 viewholder的实例化和数据绑定。
-
-#####    要传递一个泛型参数 T （MocoViewHolder），也就是你自定义的自定义viewholder；
-
-#####    数据集的实体类 B( MocoBean)，也就是你的实体类，如果没有实体类，传Void即可
-
-#####    示例代码：MocoViewHolderHelper
-
-
-	import android.content.Context;
-	import android.support.annotation.NonNull;
-	import android.view.View;
-
-	import com.adapter.smart.R;
-	import com.adapter.smart.bean.MocoBean;
-	import com.adapter.smart.common.CommonAdapter;
-	import com.adapter.smart.utils.UtilImageloader;
-
-	/**
-	 * Created by smart on 2017/4/26.
-	 */
-
-	/*
-	* 实例化你的viewholder
-	* 将数据和viewholder的控件绑定
-	* */
-	public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderCallback<MocoViewHolder,MocoBean> {
-
-		@Override
-		public CommonAdapter.IBaseViewHolder initViewHolder(MocoViewHolder viewHolder, @NonNull View convertView) {
-			viewHolder = new MocoViewHolder();
-		    viewHolder.name = UtilWidget.getView(convertView, R.id.id_name);
-            viewHolder.description = UtilWidget.getView(convertView,R.id.id_description);
-            viewHolder.learner = UtilWidget.getView(convertView,R.id.id_learner);
-            viewHolder.picSmall = UtilWidget.getView(convertView,R.id.id_picSmall);
-
-			return viewHolder;
-		}
-
-		@Override
-		public void bindView(Context context, MocoBean bean, MocoViewHolder viewHolder, int position) {
-			viewHolder.name.setText(bean.getData().get(position).getName());
-			viewHolder.description.setText(bean.getData().get(position).getDescription());
-			viewHolder.learner.setText("人数："+bean.getData().get(position).getLearner());
-			UtilImageloader.setImage(context,bean.getData().get(position).getPicSmall(),viewHolder.picSmall);
-		}
-
-	}
-
-
-### 4、给AdapterView(如 ListView)配置 Adapter
-
- #####  CommonAdapter< T > 时，要传递一个泛型参数 （MocoViewHolder），
-
-##### 　该参数实现了IBaseViewHolder接口。也就是你自定义的自定义viewholder，CommonAdapter 用。
-
-		if (mMocoBean != null) {
-		//传统的写法
-	//  mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
-		//封装后的写法
-		mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mMocoBean, R.layout.list_view_item,new MocoViewHolderHelper()));
-		}
-
-
-示例代码：MutilObjActivity
-
-	package com.adapter.smart.view;
-
-	import android.widget.Toast;
-
-	import com.adapter.smart.R;
-	import com.adapter.smart.bean.BeanMutilObj;
-	import com.adapter.smart.common.CommonAdapter;
-	import com.adapter.smart.presenter.PresenterJsonData;
-	import com.adapter.smart.viewholder.MutilObjViewHolder;
-	import com.adapter.smart.viewholder.MutilObjViewHolderHelper;
-
-	import static com.adapter.smart.constants.ConstantUrl.MUTIL_OBJECT;
-	import static com.adapter.smart.constants.DataType.DATA_TYPE_MUTIL;
-
-	public class MutilObjActivity extends BaseActivity  implements IShowData<BeanMutilObj> {
-
-	    @Override
-	    public void initPresenter() {
-		//       mListView = UtilWidget.getView(this,R.id.id_listview);
-	        new PresenterJsonData(this).getJsonLocal(DATA_TYPE_MUTIL,MUTIL_OBJECT);//取本地字符串
-		//        new PresenterJsonData(this).getJsonNet(DATA_TYPE_MUTIL,MOCO_URL);//取本地字符串
-	    }
-
-	    @Override
-	    public void showList(BeanMutilObj beanMutilData) {
-	        mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
-	    }
-
-	    @Override
-	    public void showError(String msg) {
-	        Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
-	    }
-	}
-
-
-
-![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
-![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
