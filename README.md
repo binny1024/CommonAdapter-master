@@ -219,7 +219,6 @@
 
 4.3.2、第二种构造函数（自己的项目中用到了这个）
 
-
     /**
      * @param context 上下文
      * @param baseBeanList 数据集（list的形式传递过来）
