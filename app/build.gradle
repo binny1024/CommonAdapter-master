@@ -7,7 +7,7 @@ android {
         applicationId "com.adapter.smart"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
+        versionCode 35
         versionName "1.0"
         testInstrumentationRunner "android.support.no_obj_item.runner.AndroidJUnitRunner"
     }

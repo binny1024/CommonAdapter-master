@@ -119,7 +119,7 @@ public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAda
          */
         IBaseViewHolder initViewHolder(BASEVIEWHOLDER viewHolder, View convertView);
 
-        /**用于设置 item中 的每一个控件
+        /**用于将集合中的数据设置 item中 的每一个控件
          * @param position
          */
        void bindListDataToView(Context context, List<BASEBEAN> iBaseBeanList, BASEVIEWHOLDER viewHolder, int position);
