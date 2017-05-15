@@ -34,6 +34,8 @@
 ######  继承自CommonAdapter.`IListViewHolderHelperCallback< T，B >`，来实现 viewholder的实例化和数据绑定。
 ##### 3.3 泛型参数说明
 
+
+
 #####   3.3.1 要传递一个泛型参数 T ，也就是你自定义的自定义viewholder；
 
 #####   3.3.2 数据集的实体类 B ，也就是你的实体类；
