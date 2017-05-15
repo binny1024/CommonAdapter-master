@@ -1,5 +1,5 @@
 # 具体用法请下载demo查看里面的注释说明
-    引用方式 compile 'com.smart.holder_library:holder_library:1.0.5'
+    引用方式 compile 'com.smart.holder_library:holder_library:1.0.6'
 
 
 # 使用方法
@@ -76,7 +76,7 @@
 
 ### 4、给AdapterView(如 ListView)配置 Adapter
 
-#此次更新后的用法（1.0.5版本）：
+#此次更新后的用法（1.0.6版本）：
 
  	 mListView.setAdapter(new CommonAdapter(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
 
