@@ -25,14 +25,14 @@ public class CommonAdapter extends BaseAdapter{
 
     /**
      * @param context 上下文
-     * @param IBaseBean 数据集
+     * @param iBaseBean 数据集
      * @param listSize  数据集的大小
      * @param itemViewLayout （item的布局文件）
      * @param viewHolderCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context, IBaseBean IBaseBean, Integer listSize, int itemViewLayout, IViewHolderHelperCallback viewHolderCallback) {
+    public CommonAdapter(Context context, IBaseBean iBaseBean, Integer listSize, int itemViewLayout, IViewHolderHelperCallback viewHolderCallback) {
         mContext = context;
-        mIBaseBean = IBaseBean;
+        mIBaseBean = iBaseBean;
         mItemViewLayout = itemViewLayout;
         mViewHolderCallback = viewHolderCallback;
         if (listSize != null) {
@@ -45,14 +45,14 @@ public class CommonAdapter extends BaseAdapter{
 
     /**
      * @param context 上下文
-     * @param IBaseBeanList 数据集（list的形式传递过来）
+     * @param iBaseBeanList 数据集（list的形式传递过来）
      * @param listSize  数据集的大小
      * @param itemViewLayout （item的布局文件）
      * @param viewHolderCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context, List<IBaseBean> IBaseBeanList, Integer listSize, int itemViewLayout, IViewHolderHelperCallback viewHolderCallback) {
+    public CommonAdapter(Context context, List<IBaseBean> iBaseBeanList, Integer listSize, int itemViewLayout, IViewHolderHelperCallback viewHolderCallback) {
         mContext = context;
-        mIBaseBeanList = IBaseBeanList;
+        mIBaseBeanList = iBaseBeanList;
         mItemViewLayout = itemViewLayout;
         mViewHolderCallback = viewHolderCallback;
         if (listSize != null) {
