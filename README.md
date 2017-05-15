@@ -17,12 +17,13 @@
    但是，要实现 CommonAdapter.IBaseViewHolder 接口。
 
    示例代码：MocoViewHolder
-    public class MocoViewHolder implements CommonAdapter.IBaseViewHolder {
-        public TextView name;
-        public TextView description;
-        public TextView learner;
-        public ImageView picSmall;
-    }
+
+        public class MocoViewHolder implements CommonAdapter.IBaseViewHolder {
+            public TextView name;
+            public TextView description;
+            public TextView learner;
+            public ImageView picSmall;
+        }
 
 ### 3、自定义 MutilObjViewHolderHelper
 
