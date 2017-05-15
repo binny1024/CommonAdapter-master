@@ -95,7 +95,7 @@ public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAda
         if (mIBaseBeanList == null) {
             mViewHolderCallback.bindDataToView(mContext, mIBaseBean,mBaseViewHolder,position);
         }else {
-            mIListViewHolderHelperCallback.bindDataToView(mContext, mIBaseBeanList,mBaseViewHolder,position);
+            mIListViewHolderHelperCallback.bindListDataToView(mContext, mIBaseBeanList,mBaseViewHolder,position);
         }
 
         return convertView;
@@ -122,7 +122,7 @@ public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAda
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindDataToView(Context context, List<BASEBEAN> iBaseBeanList,  BASEVIEWHOLDER viewHolder, int position);
+       void bindListDataToView(Context context, List<BASEBEAN> iBaseBeanList, BASEVIEWHOLDER viewHolder, int position);
     }
 
     /*

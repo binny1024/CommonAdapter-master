@@ -31,7 +31,7 @@ public class NoObjIViewHolderHelper implements CommonAdapter.IViewHolderHelperCa
     public void bindDataToView(Context context,  BeanNoObjI beanDataList, NoObjViewHolder viewHolder, int position) {
         viewHolder.name.setText("名字："+ beanDataList.getName());
         viewHolder.age.setText("年龄："+ beanDataList.getAge());
-        Log.i("xxx", "bindDataToView: "+ beanDataList.getAge());
+        Log.i("xxx", "bindListDataToView: "+ beanDataList.getAge());
         viewHolder.status.setText("状态："+ beanDataList.getStatus());
         viewHolder.msg.setText("结果："+ beanDataList.getMsg());
     }
