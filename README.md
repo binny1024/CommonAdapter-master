@@ -103,9 +103,10 @@
      */
 
 
-示例代码：MutilObjActivity
 
-    mListView.setAdapter(new CommonAdapter(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
+示例代码：ListDataActivity
+
+     mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList,mDataBeanList.size() , R.layout.list_view_item,new ListDataViewHolderHelper()));
 
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)

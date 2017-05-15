@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.id_mutil_obj)
     public void onMIdMutilObjClicked() {
-        startActivity(new Intent(this,MutilObjActivity.class));
+        startActivity(new Intent(this,ListDataActivity.class));
     }
 
     @Override

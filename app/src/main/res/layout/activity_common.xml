@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    tools:context="com.adapter.smart.view.MutilObjActivity">
+    tools:context="com.adapter.smart.view.ListDataActivity">
 
     <ListView
         android:id="@+id/id_listview"
