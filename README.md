@@ -1,5 +1,5 @@
 ## 具体用法请下载demo查看里面的注释说明
-    引用方式 compile 'com.smart.holder_library:holder_library:1.0.7'
+    引用方式 compile 'com.smart.holder_library:holder_library:1.0.8'
 
 
 ## 使用方法
@@ -78,7 +78,7 @@
     }
 
     @Override
-    public void bindDataToView(Context context, List<BeanMutilObjI.DataBean> iBaseBeanList, ListDataViewHolder viewHolder, int position) {
+    public void bindListDataToView(Context context, List<BeanMutilObjI.DataBean> iBaseBeanList, ListDataViewHolder viewHolder, int position) {
     viewHolder.name.setText(iBaseBeanList.get(position).getName());//这个地方自己可以优化的，不必要每次获取list
     viewHolder.description.setText(iBaseBeanList.get(position).getDescription());
     viewHolder.learner.setText("人数："+iBaseBeanList.get(position).getLearner());
