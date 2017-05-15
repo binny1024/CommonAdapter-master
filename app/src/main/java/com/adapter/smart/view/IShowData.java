@@ -10,7 +10,7 @@ import com.smart.holder_library.CommonAdapter;
 /*
 * view层接口
 * */
-public interface IShowData<T extends  CommonAdapter.BaseBean > {
+public interface IShowData<T extends CommonAdapter.IBaseBean> {
     void showList(T bean);
     void showError(String msg);
 }

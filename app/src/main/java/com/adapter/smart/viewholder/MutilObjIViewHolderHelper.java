@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.adapter.smart.R;
-import com.adapter.smart.bean.BeanMutilObj;
+import com.adapter.smart.bean.BeanMutilObjI;
 import com.adapter.smart.utils.UtilImageloader;
 import com.adapter.smart.utils.UtilWidget;
 import com.smart.holder_library.CommonAdapter;
@@ -20,9 +20,9 @@ import java.util.List;
 * 实例化你的viewholder
 * 将数据和viewholder的控件绑定
 * */
-public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderHelperCallback<MutilObjViewHolder,BeanMutilObj> {
+public class MutilObjIViewHolderHelper implements CommonAdapter.IViewHolderHelperCallback<MutilObjViewHolder,BeanMutilObjI> {
 
-    private List<BeanMutilObj.DataBean> mDataBeanList;
+    private List<BeanMutilObjI.DataBean> mDataBeanList;
 
     @Override
     public CommonAdapter.IBaseViewHolder initViewHolder(MutilObjViewHolder viewHolder, @NonNull View convertView) {
@@ -37,7 +37,7 @@ public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderHelperC
     }
 
     @Override
-    public void bindDataToView(Context context, List<CommonAdapter.BaseBean> baseBeanList, BeanMutilObj beanDataList, MutilObjViewHolder viewHolder, int position) {
+    public void bindDataToView(Context context, List<CommonAdapter.IBaseBean> IBaseBeanList, BeanMutilObjI beanDataList, MutilObjViewHolder viewHolder, int position) {
         if (mDataBeanList == null) {
             mDataBeanList =   beanDataList.getData();
         }

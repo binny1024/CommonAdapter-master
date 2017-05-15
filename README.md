@@ -145,7 +145,7 @@
 	import android.view.View;
 
 	import com.adapter.smart.R;
-	import com.adapter.smart.bean.BeanMutilObj;
+	import com.adapter.smart.bean.BeanMutilObjI;
 	import com.adapter.smart.utils.UtilImageloader;
 	import com.adapter.smart.utils.UtilWidget;
 	import com.smart.holder_library.CommonAdapter;
@@ -177,7 +177,7 @@
 	    }
 
 	    @Override
-	    public void bindDataToView(Context context, List<CommonAdapter.BaseBean> baseBeanList, BeanMutilObj beanDataList, MutilObjViewHolder viewHolder, int position) {
+	    public void bindDataToView(Context context, List<CommonAdapter.BaseBean> IBaseBeanList, BeanMutilObj beanDataList, MutilObjViewHolder viewHolder, int position) {
 	        if (mDataBeanList == null) {
 	            mDataBeanList =   beanDataList.getData();
 	        }
@@ -211,7 +211,7 @@
 
     /**
      * @param context 上下文
-     * @param baseBean 数据集（直接以bean的形式传递过来）
+     * @param IBaseBean 数据集（直接以bean的形式传递过来）
      * @param listSize  数据集的大小
      * @param itemViewLayout （item的布局文件）
      * @param viewHolderCallback （viewholder的接口）
@@ -221,7 +221,7 @@
 
     /**
      * @param context 上下文
-     * @param baseBeanList 数据集（list<BaseBean>的形式传递过来，里面是你的实体类）
+     * @param IBaseBeanList 数据集（list<BaseBean>的形式传递过来，里面是你的实体类）
      * @param listSize  数据集的大小
      * @param itemViewLayout （item的布局文件）
      * @param viewHolderCallback （viewholder的接口）
@@ -237,11 +237,11 @@
 	import android.widget.Toast;
 
 	import com.adapter.smart.R;
-	import com.adapter.smart.bean.BeanMutilObj;
+	import com.adapter.smart.bean.BeanMutilObjI;
 	import com.adapter.smart.common.CommonAdapter;
 	import com.adapter.smart.presenter.PresenterJsonData;
 	import com.adapter.smart.viewholder.MutilObjViewHolder;
-	import com.adapter.smart.viewholder.MutilObjViewHolderHelper;
+	import com.adapter.smart.viewholder.MutilObjIViewHolderHelper;
 
 	import static com.adapter.smart.constants.ConstantUrl.MUTIL_OBJECT;
 	import static com.adapter.smart.constants.DataType.DATA_TYPE_MUTIL;

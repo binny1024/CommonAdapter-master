@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.adapter.smart.bean.BeanMutilObj;
+import com.adapter.smart.bean.BeanMutilObjI;
 import com.adapter.smart.utils.UtilImageloader;
 
 /**
@@ -16,9 +16,9 @@ import com.adapter.smart.utils.UtilImageloader;
  */
 public class UsualAdapter extends BaseAdapter {
     private Context mContext;
-    private BeanMutilObj mMocoBean;
+    private BeanMutilObjI mMocoBean;
 
-    public UsualAdapter(Context context, BeanMutilObj mocoBean) {
+    public UsualAdapter(Context context, BeanMutilObjI mocoBean) {
         mContext = context;
         mMocoBean = mocoBean;
     }

@@ -2,9 +2,9 @@ package com.adapter.smart.model;
 
 import android.util.Log;
 
-import com.adapter.smart.bean.BeanMutilObj;
-import com.adapter.smart.bean.BeanNoObj;
-import com.adapter.smart.bean.BeanOneObj;
+import com.adapter.smart.bean.BeanMutilObjI;
+import com.adapter.smart.bean.BeanNoObjI;
+import com.adapter.smart.bean.BeanOneObjI;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
@@ -24,9 +24,9 @@ import static com.adapter.smart.constants.DataType.DATA_TYPE_ONE;
 
 public class ModelJsonData  implements IModelJsonData  {
 
-    private BeanMutilObj mBeanMutilObj;//含有数组的json
-    private BeanOneObj mBeanOneObj;//含有一个对象的json
-    private BeanNoObj mBeanNoObj;//没有对象的json
+    private BeanMutilObjI mBeanMutilObj;//含有数组的json
+    private BeanOneObjI mBeanOneObj;//含有一个对象的json
+    private BeanNoObjI mBeanNoObj;//没有对象的json
 
     @Override
     public void getLocalDataList(int tag,String s, IDataResult iDataResult) {
@@ -70,7 +70,7 @@ public class ModelJsonData  implements IModelJsonData  {
 
     private void resultMutil(String s, final IDataResult iDataResult) {
         Gson gson = new Gson();
-        mBeanMutilObj = gson.fromJson(s, new TypeToken<BeanMutilObj>(){}.getType());
+        mBeanMutilObj = gson.fromJson(s, new TypeToken<BeanMutilObjI>(){}.getType());
         if (mBeanMutilObj == null) {
             iDataResult.failure("数据为空");
         }else {
@@ -80,7 +80,7 @@ public class ModelJsonData  implements IModelJsonData  {
 
     private void resultOne(String s, final IDataResult iDataResult) {
         Gson gson = new Gson();
-        mBeanOneObj = gson.fromJson(s, new TypeToken<BeanOneObj>(){}.getType());
+        mBeanOneObj = gson.fromJson(s, new TypeToken<BeanOneObjI>(){}.getType());
         if (mBeanOneObj == null) {
             iDataResult.failure("数据为空");
         }else {
@@ -91,7 +91,7 @@ public class ModelJsonData  implements IModelJsonData  {
     private void resultNo(String s, final IDataResult iDataResult) {
         Log.i("xxx", "resultNo: "+s);
         Gson gson = new Gson();
-        mBeanNoObj = gson.fromJson(s, new TypeToken<BeanNoObj>(){}.getType());
+        mBeanNoObj = gson.fromJson(s, new TypeToken<BeanNoObjI>(){}.getType());
         if (mBeanNoObj == null) {
             iDataResult.failure("数据为空");
         }else {

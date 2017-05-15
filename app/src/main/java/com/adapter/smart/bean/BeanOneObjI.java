@@ -6,7 +6,7 @@ import com.smart.holder_library.CommonAdapter;
  * Created by smart on 2017/4/26.
  */
 
-public class BeanOneObj implements  CommonAdapter.BaseBean  {
+public class BeanOneObjI implements CommonAdapter.IBaseBean {
 
     /**
      * status : 1

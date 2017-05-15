@@ -4,15 +4,15 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.adapter.smart.R;
-import com.adapter.smart.bean.BeanNoObj;
+import com.adapter.smart.bean.BeanNoObjI;
 import com.adapter.smart.presenter.PresenterJsonData;
-import com.adapter.smart.viewholder.NoObjViewHolderHelper;
+import com.adapter.smart.viewholder.NoObjIViewHolderHelper;
 import com.smart.holder_library.CommonAdapter;
 
 import static com.adapter.smart.constants.ConstantUrl.NO_OBJECT;
 import static com.adapter.smart.constants.DataType.DATA_TYPE_NO;
 
-public class NoObjActivity extends BaseActivity implements IShowData<BeanNoObj> {
+public class NoObjActivity extends BaseActivity implements IShowData<BeanNoObjI> {
 
 
     @Override
@@ -22,8 +22,8 @@ public class NoObjActivity extends BaseActivity implements IShowData<BeanNoObj> 
 
 
     @Override
-    public void showList(BeanNoObj bean) {
-        mListView.setAdapter(new CommonAdapter(mContext,bean,1, R.layout.no_obj_item,new NoObjViewHolderHelper()));
+    public void showList(BeanNoObjI bean) {
+        mListView.setAdapter(new CommonAdapter(mContext,bean,1, R.layout.no_obj_item,new NoObjIViewHolderHelper()));
         Log.i("xxx", "showList: "+bean.getMsg());
     }
 

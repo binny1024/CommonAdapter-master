@@ -6,7 +6,7 @@ import com.smart.holder_library.CommonAdapter;
  * Created by smart on 2017/4/26.
  */
 
-public class BeanNoObj implements  CommonAdapter.BaseBean  {
+public class BeanNoObjI implements CommonAdapter.IBaseBean {
     /**
      * status : 1
      * name : Tony老师聊shell——环境变量配置文件

@@ -29,8 +29,8 @@ public class PresenterJsonData {
         mIModelJsonData.getLocalDataList(tag,dataSource, new IDataResult() {
 
             @Override
-            public void success( CommonAdapter.BaseBean  baseBean) {
-                mIShowData.showList(baseBean);
+            public void success( CommonAdapter.IBaseBean IBaseBean) {
+                mIShowData.showList(IBaseBean);
             }
 
             @Override
@@ -47,7 +47,7 @@ public class PresenterJsonData {
     public void getJsonNet(final int tag,String dataSource) {
         mIModelJsonData.getNetDataList(tag, dataSource, new IDataResult() {
             @Override
-            public void success( CommonAdapter.BaseBean  bean) {
+            public void success( CommonAdapter.IBaseBean bean) {
                 mIShowData.showList(bean);
             }
 

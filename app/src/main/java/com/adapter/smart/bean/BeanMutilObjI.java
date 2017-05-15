@@ -8,7 +8,7 @@ import java.util.List;
  * Created by smart on 2017/4/24.
  */
 
-public class BeanMutilObj implements CommonAdapter.BaseBean {
+public class BeanMutilObjI implements CommonAdapter.IBaseBean {
 
 
     /**
