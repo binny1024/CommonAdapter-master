@@ -14,13 +14,14 @@ import java.util.List;
  * Created by smart on 2017/4/24.
  */
 
-public class CommonAdapter extends BaseAdapter{
+public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAdapter{
     private final int mItemViewLayout;//item布局文件
     protected Context mContext;
     private IBaseViewHolder mBaseViewHolder;
     private IViewHolderHelperCallback mViewHolderCallback;
+    private IListViewHolderHelperCallback mIListViewHolderHelperCallback;
     private IBaseBean mIBaseBean;
-    private List<IBaseBean> mIBaseBeanList;
+    private List<BEAN> mIBaseBeanList;
     private int listSize;
 
     /**
@@ -48,13 +49,13 @@ public class CommonAdapter extends BaseAdapter{
      * @param iBaseBeanList 数据集（list的形式传递过来）
      * @param listSize  数据集的大小
      * @param itemViewLayout （item的布局文件）
-     * @param viewHolderCallback （viewholder的接口）
+     * @param iListViewHolderHelperCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context, List<IBaseBean> iBaseBeanList, Integer listSize, int itemViewLayout, IViewHolderHelperCallback viewHolderCallback) {
+    public CommonAdapter(Context context, List<BEAN> iBaseBeanList, Integer listSize, int itemViewLayout, IListViewHolderHelperCallback iListViewHolderHelperCallback) {
         mContext = context;
         mIBaseBeanList = iBaseBeanList;
         mItemViewLayout = itemViewLayout;
-        mViewHolderCallback = viewHolderCallback;
+        mIListViewHolderHelperCallback = iListViewHolderHelperCallback;
         if (listSize != null) {
             this.listSize = listSize;
         }else {
@@ -81,12 +82,22 @@ public class CommonAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(mItemViewLayout,parent,false);
-            mBaseViewHolder =  mViewHolderCallback.initViewHolder(mBaseViewHolder,convertView);
+            if (mIListViewHolderHelperCallback == null) {
+                mBaseViewHolder =  mViewHolderCallback.initViewHolder(mBaseViewHolder,convertView);
+            }else {
+                mBaseViewHolder =  mIListViewHolderHelperCallback.initViewHolder(mBaseViewHolder,convertView);
+            }
+
             convertView.setTag(mBaseViewHolder);
         }else {
             mBaseViewHolder = (IBaseViewHolder)convertView.getTag();
         }
-        mViewHolderCallback.bindDataToView(mContext, mIBaseBeanList, mIBaseBean,mBaseViewHolder,position);
+        if (mIBaseBeanList == null) {
+            mViewHolderCallback.bindDataToView(mContext, mIBaseBean,mBaseViewHolder,position);
+        }else {
+            mIListViewHolderHelperCallback.bindDataToView(mContext, mIBaseBeanList,mBaseViewHolder,position);
+        }
+
         return convertView;
     }
 
@@ -100,7 +111,18 @@ public class CommonAdapter extends BaseAdapter{
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindDataToView(Context context, List<IBaseBean> IBaseBeanList, BASEBEAN beanDataList, BASEVIEWHOLDER viewHolder, int position);
+       void bindDataToView(Context context,BASEBEAN basebean, BASEVIEWHOLDER viewHolder, int position);
+    }
+    public interface IListViewHolderHelperCallback<BASEVIEWHOLDER extends IBaseViewHolder, BASEBEAN extends IBaseBean>{
+        /** 用于初始化ViewHolder
+         * @param convertView
+         */
+        IBaseViewHolder initViewHolder(BASEVIEWHOLDER viewHolder, View convertView);
+
+        /**用于设置 item中 的每一个控件
+         * @param position
+         */
+       void bindDataToView(Context context, List<BASEBEAN> iBaseBeanList,  BASEVIEWHOLDER viewHolder, int position);
     }
 
     /*

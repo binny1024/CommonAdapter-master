@@ -8,3 +8,4 @@
 /captures
 .externalNativeBuild
 app/src/main/java/com/adapter/smart/data/
+holder_library/build.gradle

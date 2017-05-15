@@ -29,8 +29,8 @@ public class PresenterJsonData {
         mIModelJsonData.getLocalDataList(tag,dataSource, new IDataResult() {
 
             @Override
-            public void success( CommonAdapter.IBaseBean IBaseBean) {
-                mIShowData.showList(IBaseBean);
+            public void success( CommonAdapter.IBaseBean iBaseBean) {
+                mIShowData.showList(iBaseBean);
             }
 
             @Override

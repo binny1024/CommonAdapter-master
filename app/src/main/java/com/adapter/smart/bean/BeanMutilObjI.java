@@ -45,7 +45,7 @@ public class BeanMutilObjI implements CommonAdapter.IBaseBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements CommonAdapter.IBaseBean {
         /**
          * id : 1
          * name : Tony老师聊shell——环境变量配置文件

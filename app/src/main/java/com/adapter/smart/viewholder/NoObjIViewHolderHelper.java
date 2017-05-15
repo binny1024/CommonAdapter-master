@@ -10,8 +10,6 @@ import com.adapter.smart.bean.BeanNoObjI;
 import com.adapter.smart.utils.UtilWidget;
 import com.smart.holder_library.CommonAdapter;
 
-import java.util.List;
-
 /**
  * Created by smart on 2017/4/26.
  */
@@ -30,7 +28,7 @@ public class NoObjIViewHolderHelper implements CommonAdapter.IViewHolderHelperCa
     }
 
     @Override
-    public void bindDataToView(Context context, List<CommonAdapter.IBaseBean> IBaseBeanList, BeanNoObjI beanDataList, NoObjViewHolder viewHolder, int position) {
+    public void bindDataToView(Context context,  BeanNoObjI beanDataList, NoObjViewHolder viewHolder, int position) {
         viewHolder.name.setText("名字："+ beanDataList.getName());
         viewHolder.age.setText("年龄："+ beanDataList.getAge());
         Log.i("xxx", "bindDataToView: "+ beanDataList.getAge());
