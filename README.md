@@ -28,7 +28,7 @@
 ##### 三、自定义 MutilObjViewHolderHelper，分两种情况
 #### 3.1 传递一个简单的实体类对象
 
-#######  继承自CommonAdapter.`IViewHolderHelperCallback< T，B >`，来实现 viewholder的实例化和数据绑定。
+######  继承自CommonAdapter.`IViewHolderHelperCallback< T，B >`，来实现 viewholder的实例化和数据绑定。
 #### 3.2 传递一个List对象
 
 ######  继承自CommonAdapter.`IListViewHolderHelperCallback< T，B >`，来实现 viewholder的实例化和数据绑定。
