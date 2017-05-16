@@ -1,5 +1,5 @@
 ## 具体用法请下载demo查看里面的注释说明
-    引用方式 compile 'com.smart.holder_library:holder_library:1.0.8'
+    引用方式 compile 'com.smart.holder_library:holder_library:1.0.9'
 
 
 ## 使用方法
