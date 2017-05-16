@@ -14,7 +14,7 @@ import com.smart.holder_library.CommonAdapter;
  * Created by smart on 2017/4/26.
  */
 
-public class NoObjIViewHolderHelper implements CommonAdapter.IViewHolderHelperCallback<NoObjViewHolder,BeanNoObjI> {
+public class NoObjIViewHolderHelper implements CommonAdapter.IHolderHelperCallback<NoObjViewHolder,BeanNoObjI> {
     @Override
     public CommonAdapter.IBaseViewHolder initViewHolder(NoObjViewHolder viewHolder, @NonNull View convertView) {
         viewHolder = new NoObjViewHolder();
