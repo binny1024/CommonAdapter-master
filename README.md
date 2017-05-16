@@ -90,7 +90,7 @@
 
 ### 4、给AdapterView(如 ListView)配置 Adapter
 
- 	  mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList,mDataBeanList.size() , R.layout.list_view_item,new ListDataViewHolderHelper()));
+ 	  mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList,R.layout.list_view_item,new ListDataViewHolderHelper()));
 
 参数列表分别为 ：
 
@@ -116,7 +116,7 @@
 
 示例代码：ListDataActivity
 
-     mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList,mDataBeanList.size() , R.layout.list_view_item,new ListDataViewHolderHelper()));
+     mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList,R.layout.list_view_item,new ListDataViewHolderHelper()));
 
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
