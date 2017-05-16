@@ -27,45 +27,31 @@ public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAda
     /**
      * @param context 上下文
      * @param iBaseBean 数据集
-     * @param listSize  数据集的大小
      * @param itemViewLayout （item的布局文件）
      * @param iHolderHelperCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context, IBaseBean iBaseBean, Integer listSize, int itemViewLayout, IHolderHelperCallback iHolderHelperCallback) {
+    public CommonAdapter(Context context, IBaseBean iBaseBean,int itemViewLayout, IHolderHelperCallback iHolderHelperCallback) {
         mContext = context;
         mIBaseBean = iBaseBean;
         mItemViewLayout = itemViewLayout;
         mHolderCallback = iHolderHelperCallback;
-        if (listSize != null) {
-            this.listSize = listSize;
-        }else {
-            this.listSize = 1;
-        }
-
     }
 
     /**
      * @param context 上下文
      * @param iBaseBeanList 数据集（list的形式传递过来）
-     * @param listSize  数据集的大小
      * @param itemViewLayout （item的布局文件）
      * @param iListHolderHelperCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context, List<BEAN> iBaseBeanList, Integer listSize, int itemViewLayout, IListHolderHelperCallback iListHolderHelperCallback) {
+    public CommonAdapter(Context context, List<BEAN> iBaseBeanList, int itemViewLayout, IListHolderHelperCallback iListHolderHelperCallback) {
         mContext = context;
         mIBaseBeanList = iBaseBeanList;
         mItemViewLayout = itemViewLayout;
         mIListHolderHelperCallback = iListHolderHelperCallback;
-        if (listSize != null) {
-            this.listSize = listSize;
-        }else {
-            this.listSize = 1;
-        }
-
     }
     @Override
     public int getCount() {
-        return listSize;
+        return mIBaseBeanList==null?1:mIBaseBeanList.size();
     }
 
     @Override

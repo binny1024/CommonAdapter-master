@@ -96,23 +96,21 @@
 
 #####4.1、 第一种构造函数（本demo使用的就是这种）
 
-    /**
-     * @param context 上下文
-     * @param iBaseBean 数据集
-     * @param listSize  数据集的大小
-     * @param itemViewLayout （item的布局文件）
-     * @param hHolderCallback （viewholder的接口）
-     */
+        /**
+         * @param context 上下文
+         * @param iBaseBean 数据集
+         * @param itemViewLayout （item的布局文件）
+         * @param iHolderHelperCallback （viewholder的接口）
+         */
 
 #####4.2、第二种构造函数（自己的项目中用到了这个）
 
-    /**
-     * @param context 上下文
-     * @param iBaseBeanList 数据集（list的形式传递过来）
-     * @param listSize  数据集的大小
-     * @param itemViewLayout （item的布局文件）
-     * @param iListHolderHelperCallback （viewholder的接口）
-     */
+        /**
+        * @param context 上下文
+        * @param iBaseBeanList 数据集（list的形式传递过来）
+        * @param itemViewLayout （item的布局文件）
+        * @param iListHolderHelperCallback （viewholder的接口）
+        */
 
 
 

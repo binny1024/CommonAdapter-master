@@ -23,7 +23,7 @@ public class NoObjActivity extends BaseActivity implements IShowData<BeanNoObjI>
 
     @Override
     public void showList(BeanNoObjI bean) {
-        mListView.setAdapter(new CommonAdapter(mContext,bean,1, R.layout.no_obj_item,new NoObjIViewHolderHelper()));
+        mListView.setAdapter(new CommonAdapter(mContext,bean,R.layout.no_obj_item,new NoObjIViewHolderHelper()));
         Log.i("xxx", "showList: "+bean.getMsg());
     }
 

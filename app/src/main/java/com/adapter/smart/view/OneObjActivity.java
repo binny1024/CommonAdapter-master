@@ -18,7 +18,7 @@ public class OneObjActivity extends BaseActivity implements IShowData<BeanOneObj
 
     @Override
     public void showList(BeanOneObjI bean) {
-        mListView.setAdapter(new CommonAdapter(mContext, bean,null, R.layout.no_obj_item, new OneObjIViewHolderHelper()));
+        mListView.setAdapter(new CommonAdapter(mContext, bean, R.layout.no_obj_item, new OneObjIViewHolderHelper()));
     }
 
     @Override
