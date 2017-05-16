@@ -29,7 +29,7 @@ public class ListDataActivity extends BaseActivity  implements IShowData<BeanMut
         mAnimationDrawable.stop();
         mImageView.setVisibility(View.GONE);
         mDataBeanList = beanMutilData.getData();
-        mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList,mDataBeanList.size() , R.layout.list_view_item,new ListDataViewHolderHelper()));
+        mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList, R.layout.list_view_item,new ListDataViewHolderHelper()));
     }
 
     @Override

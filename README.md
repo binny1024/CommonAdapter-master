@@ -1,5 +1,5 @@
 ## 具体用法请下载demo查看里面的注释说明
-    引用方式 compile 'com.smart.holder_library:holder_library:1.0.7'
+    引用方式 compile 'com.smart.holder_library:holder_library:1.0.8'
 
 
 ## 使用方法
@@ -28,10 +28,10 @@
 ##### 三、自定义 MutilObjViewHolderHelper，分两种情况
 #### 3.1 传递一个简单的实体类对象
 
-######  继承自CommonAdapter.`IViewHolderHelperCallback< T，B >`，来实现 viewholder的实例化和数据绑定。
+######  继承自CommonAdapter.`IHolderHelperCallback< T，B >`，来实现 viewholder的实例化和数据绑定。
 #### 3.2 传递一个List对象
 
-######  继承自CommonAdapter.`IListViewHolderHelperCallback< T，B >`，来实现 viewholder的实例化和数据绑定。
+######  继承自CommonAdapter.`IListHolderHelperCallback< T，B >`，来实现 viewholder的实例化和数据绑定。
 ##### 3.3 泛型参数说明
 
 
@@ -63,7 +63,7 @@
     * 实例化你的viewholder
     * 将数据和viewholder的控件绑定
     * */
-    public class ListDataViewHolderHelper implements CommonAdapter.IListViewHolderHelperCallback<ListDataViewHolder,BeanMutilObjI.DataBean> {
+    public class ListDataViewHolderHelper implements CommonAdapter.IListHolderHelperCallback<ListDataViewHolder,BeanMutilObjI.DataBean> {
 
     @Override
     public CommonAdapter.IBaseViewHolder initViewHolder(ListDataViewHolder viewHolder, @NonNull View convertView) {
@@ -78,7 +78,7 @@
     }
 
     @Override
-    public void bindDataToView(Context context, List<BeanMutilObjI.DataBean> iBaseBeanList, ListDataViewHolder viewHolder, int position) {
+    public void bindListDataToView(Context context, List<BeanMutilObjI.DataBean> iBaseBeanList, ListDataViewHolder viewHolder, int position) {
     viewHolder.name.setText(iBaseBeanList.get(position).getName());//这个地方自己可以优化的，不必要每次获取list
     viewHolder.description.setText(iBaseBeanList.get(position).getDescription());
     viewHolder.learner.setText("人数："+iBaseBeanList.get(position).getLearner());
@@ -96,23 +96,21 @@
 
 #####4.1、 第一种构造函数（本demo使用的就是这种）
 
-    /**
-     * @param context 上下文
-     * @param iBaseBean 数据集
-     * @param listSize  数据集的大小
-     * @param itemViewLayout （item的布局文件）
-     * @param viewHolderCallback （viewholder的接口）
-     */
+        /**
+         * @param context 上下文
+         * @param iBaseBean 数据集
+         * @param itemViewLayout （item的布局文件）
+         * @param iHolderHelperCallback （viewholder的接口）
+         */
 
 #####4.2、第二种构造函数（自己的项目中用到了这个）
 
-    /**
-     * @param context 上下文
-     * @param iBaseBeanList 数据集（list的形式传递过来）
-     * @param listSize  数据集的大小
-     * @param itemViewLayout （item的布局文件）
-     * @param iListViewHolderHelperCallback （viewholder的接口）
-     */
+        /**
+        * @param context 上下文
+        * @param iBaseBeanList 数据集（list的形式传递过来）
+        * @param itemViewLayout （item的布局文件）
+        * @param iListHolderHelperCallback （viewholder的接口）
+        */
 
 
 
