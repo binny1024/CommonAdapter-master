@@ -2,7 +2,7 @@ package com.adapter.smart.model;
 
 import android.util.Log;
 
-import com.adapter.smart.bean.BeanMutilObjI;
+import com.adapter.smart.bean.BeanMutilObjImp;
 import com.adapter.smart.bean.BeanNoObjI;
 import com.adapter.smart.bean.BeanOneObjI;
 import com.google.gson.Gson;
@@ -24,7 +24,7 @@ import static com.adapter.smart.constants.DataType.DATA_TYPE_ONE;
 
 public class ModelJsonData  implements IModelJsonData  {
 
-    private BeanMutilObjI mBeanMutilObj;//含有数组的json
+    private BeanMutilObjImp mBeanMutilObj;//含有数组的json
     private BeanOneObjI mBeanOneObj;//含有一个对象的json
     private BeanNoObjI mBeanNoObj;//没有对象的json
 
@@ -47,7 +47,8 @@ public class ModelJsonData  implements IModelJsonData  {
     public void getNetDataList(final int tag, String url, final IDataResult iDataResult) {
         OkGo.get(url)     // 请求方式和请求url
                 .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
-                .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
+                .cacheKey("cacheKey")
+                // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
                 .cacheMode(CacheMode.DEFAULT)    // 缓存模式，详细请看缓存介绍
                 .execute(new StringCallback() {
                     @Override
@@ -70,7 +71,7 @@ public class ModelJsonData  implements IModelJsonData  {
 
     private void resultMutil(String s, final IDataResult iDataResult) {
         Gson gson = new Gson();
-        mBeanMutilObj = gson.fromJson(s, new TypeToken<BeanMutilObjI>(){}.getType());
+        mBeanMutilObj = gson.fromJson(s, new TypeToken<BeanMutilObjImp>(){}.getType());
         if (mBeanMutilObj == null) {
             iDataResult.failure("数据为空");
         }else {

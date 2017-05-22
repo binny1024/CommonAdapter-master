@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.adapter.smart.R;
-import com.adapter.smart.bean.BeanMutilObjI;
+import com.adapter.smart.bean.BeanMutilObjImp;
 import com.adapter.smart.utils.UtilImageloader;
 import com.adapter.smart.utils.UtilWidget;
 import com.smart.holder_library.CommonAdapter;
@@ -20,7 +20,7 @@ import java.util.List;
 * 实例化你的viewholder
 * 将数据和viewholder的控件绑定
 * */
-public class ListDataViewHolderHelper implements CommonAdapter.IListHolderHelperCallback<ListDataViewHolder,BeanMutilObjI.DataBean> {
+public class ListDataViewHolderHelper implements CommonAdapter.IListHolderHelperCallback<ListDataViewHolder,BeanMutilObjImp.DataBean> {
 
     @Override
     public CommonAdapter.IBaseViewHolder initViewHolder(ListDataViewHolder viewHolder, @NonNull View convertView) {
@@ -35,7 +35,7 @@ public class ListDataViewHolderHelper implements CommonAdapter.IListHolderHelper
     }
 
     @Override
-    public void bindListDataToView(Context context, List<BeanMutilObjI.DataBean> iBaseBeanList, ListDataViewHolder viewHolder, int position) {
+    public void bindListDataToView(Context context, List<BeanMutilObjImp.DataBean> iBaseBeanList, ListDataViewHolder viewHolder, int position) {
         viewHolder.name.setText(iBaseBeanList.get(position).getName());//这个地方自己可以优化的，不必要每次获取list
         viewHolder.description.setText(iBaseBeanList.get(position).getDescription());
         viewHolder.learner.setText("人数："+iBaseBeanList.get(position).getLearner());

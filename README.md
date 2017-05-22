@@ -48,7 +48,7 @@
     import android.view.View;
 
     import com.adapter.smart.R;
-    import com.adapter.smart.bean.BeanMutilObjI;
+    import com.adapter.smart.bean.BeanMutilObjImp;
     import com.adapter.smart.utils.UtilImageloader;
     import com.adapter.smart.utils.UtilWidget;
     import com.smart.holder_library.CommonAdapter;
