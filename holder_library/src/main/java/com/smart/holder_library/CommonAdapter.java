@@ -2,6 +2,7 @@ package com.smart.holder_library;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -86,6 +87,16 @@ public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAda
             mIListHolderHelperCallback.bindListDataToView(mContext, mIBaseBeanList,mBaseViewHolder,position);
         }
 
+        final View finalConvertView = convertView;
+        convertView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+             /*   Log.i("xxx", "initViewHolder" + finalConvertView.getTop());//永远是想相对于父容器的总抽方向上的距离
+                Log.i("xxx", "相对于父容器的位置Y----------------" +event.getY());//永远是相对于view自身左上角的距离，只与view本身有关
+                Log.i("xxx", "相对于屏幕的位置Y------------------" +event.getRawY());//永远是相对于屏幕的总抽方向的距离*/
+                return false;
+            }
+        });
         return convertView;
     }
 
