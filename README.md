@@ -1,5 +1,5 @@
 ## 具体用法请下载demo查看里面的注释说明
-    引用方式 compile 'com.smart.holder_library:holder_library:1.0.9'
+    引用方式 compile 'com.smart.holder_library:holder_library:1.1.2'
 
 
 ## 使用方法
@@ -48,7 +48,7 @@
     import android.view.View;
 
     import com.adapter.smart.R;
-    import com.adapter.smart.bean.BeanMutilObjI;
+    import com.adapter.smart.bean.BeanMutilObjImp;
     import com.adapter.smart.utils.UtilImageloader;
     import com.adapter.smart.utils.UtilWidget;
     import com.smart.holder_library.CommonAdapter;
@@ -96,12 +96,14 @@
 
 #####4.1、 第一种构造函数（本demo使用的就是这种）
 
-        /**
-         * @param context 上下文
-         * @param iBaseBean 数据集
-         * @param itemViewLayout （item的布局文件）
-         * @param iHolderHelperCallback （viewholder的接口）
-         */
+        /** 传过来一个数据实体类时，当你用Gson时，你可以不用写list
+            * 直接将json数据，转换为bean对象；然后将bean对象传递进来
+            * param context 上下文
+            * param iBaseBean 数据集
+            * param itemViewLayout （item的布局文件）
+            * param listDataSize(bean 中 包含的list的大小)
+            * param iHolderHelperCallback （viewholder的接口）
+            */
 
 #####4.2、第二种构造函数（自己的项目中用到了这个）
 

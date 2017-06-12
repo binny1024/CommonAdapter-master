@@ -2,7 +2,6 @@ package com.smart.holder_library;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,13 +12,13 @@ import java.util.List;
 
 /**
  * Created by xubinbin on 2017/4/24.
- * @function 封装adapter，是viewholder和adapter分离
+ * function 封装adapter，是viewholder和adapter分离
  *
  */
 
 public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAdapter{
     private final int mItemViewLayout;//item布局文件
-    protected Context mContext;
+    private Context mContext;
     private IBaseViewHolder mBaseViewHolder;
     private IHolderHelperCallback mHolderCallback;
     private IListHolderHelperCallback mIListHolderHelperCallback;
@@ -27,24 +26,27 @@ public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAda
     private List<BEAN> mIBaseBeanList;
     private int listSize;
 
-    /**
-     * @param context 上下文
-     * @param iBaseBean 数据集
-     * @param itemViewLayout （item的布局文件）
-     * @param iHolderHelperCallback （viewholder的接口）
+    /** 传过来一个数据实体类时，当你用Gson时，你可以不用写list
+     * 直接将json数据，转换为bean对象；然后将bean对象传递进来
+     * param context 上下文
+     * param iBaseBean 数据集
+     * param itemViewLayout （item的布局文件）
+     * param listDataSize(bean 中 包含的list的大小)
+     * param iHolderHelperCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context, IBaseBean iBaseBean,int itemViewLayout, IHolderHelperCallback iHolderHelperCallback) {
+    public CommonAdapter(Context context, IBaseBean iBaseBean,int listDataSize,int itemViewLayout, IHolderHelperCallback iHolderHelperCallback) {
         mContext = context;
         mIBaseBean = iBaseBean;
         mItemViewLayout = itemViewLayout;
         mHolderCallback = iHolderHelperCallback;
+        listSize = listDataSize;
     }
 
     /**
-     * @param context 上下文
-     * @param iBaseBeanList 数据集（list的形式传递过来）
-     * @param itemViewLayout （item的布局文件）
-     * @param iListHolderHelperCallback （viewholder的接口）
+     * param context 上下文
+     * param iBaseBeanList 数据集（list的形式传递过来）
+     * param itemViewLayout （item的布局文件）
+     * param iListHolderHelperCallback （viewholder的接口）
      */
     public CommonAdapter(Context context, List<BEAN> iBaseBeanList, int itemViewLayout, IListHolderHelperCallback iListHolderHelperCallback) {
         mContext = context;
@@ -54,7 +56,7 @@ public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAda
     }
     @Override
     public int getCount() {
-        return mIBaseBeanList==null?1:mIBaseBeanList.size();
+        return mIBaseBeanList==null?listSize:mIBaseBeanList.size();
     }
 
     @Override
@@ -68,6 +70,7 @@ public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAda
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(mItemViewLayout,parent,false);
@@ -86,17 +89,6 @@ public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAda
         }else {
             mIListHolderHelperCallback.bindListDataToView(mContext, mIBaseBeanList,mBaseViewHolder,position);
         }
-
-        final View finalConvertView = convertView;
-        convertView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-             /*   Log.i("xxx", "initViewHolder" + finalConvertView.getTop());//永远是想相对于父容器的总抽方向上的距离
-                Log.i("xxx", "相对于父容器的位置Y----------------" +event.getY());//永远是相对于view自身左上角的距离，只与view本身有关
-                Log.i("xxx", "相对于屏幕的位置Y------------------" +event.getRawY());//永远是相对于屏幕的总抽方向的距离*/
-                return false;
-            }
-        });
         return convertView;
     }
 
@@ -105,25 +97,25 @@ public class CommonAdapter<BEAN extends CommonAdapter.IBaseBean> extends BaseAda
     * */
     public interface IHolderHelperCallback<BASEVIEWHOLDER extends IBaseViewHolder, BASEBEAN extends IBaseBean>{
         /** 用于初始化ViewHolder
-         * @param convertView
+         * param convertView
          */
         IBaseViewHolder initViewHolder(BASEVIEWHOLDER viewHolder, View convertView);
 
         /**用于设置 item中 的每一个控件
-         * @param position
+         * param position
          */
-       void bindDataToView(Context context,BASEBEAN basebean, BASEVIEWHOLDER viewHolder, int position);
+        void bindDataToView(Context context,BASEBEAN basebean, BASEVIEWHOLDER viewHolder, int position);
     }
     public interface IListHolderHelperCallback<BASEVIEWHOLDER extends IBaseViewHolder, BASEBEAN extends IBaseBean>{
         /** 用于初始化ViewHolder
-         * @param convertView
+         * param convertView
          */
         IBaseViewHolder initViewHolder(BASEVIEWHOLDER viewHolder, View convertView);
 
         /**用于将集合中的数据设置 item中 的每一个控件
-         * @param position
+         * param position
          */
-       void bindListDataToView(Context context, List<BASEBEAN> iBaseBeanList, BASEVIEWHOLDER viewHolder, int position);
+        void bindListDataToView(Context context, List<BASEBEAN> iBaseBeanList, BASEVIEWHOLDER viewHolder, int position);
     }
 
     /*
