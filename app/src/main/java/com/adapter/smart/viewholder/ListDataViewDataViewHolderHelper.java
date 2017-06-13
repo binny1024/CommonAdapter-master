@@ -20,10 +20,10 @@ import java.util.List;
 * 实例化你的viewholder
 * 将数据和viewholder的控件绑定
 * */
-public class ListDataViewHolderHelper implements CommonAdapter.IListHolderHelperCallback<ListDataViewHolder,BeanMutilObjI.DataBean> {
+public class ListDataViewDataViewHolderHelper implements CommonAdapter.IListDataViewHolderHelper<ListDataViewHolder,BeanMutilObjI.DataBean> {
 
     @Override
-    public CommonAdapter.IBaseViewHolder initViewHolder(ListDataViewHolder viewHolder, @NonNull View convertView) {
+    public CommonAdapter.IBaseItemViewHolder initItemViewHolder(ListDataViewHolder viewHolder, @NonNull View convertView) {
         viewHolder = new ListDataViewHolder();
 
         viewHolder.name = UtilWidget.getView(convertView, R.id.id_name);

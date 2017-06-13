@@ -8,7 +8,7 @@ import com.smart.holder_library.CommonAdapter;
  * Created by smart on 2017/4/26.
  */
 
-public class NoObjViewHolder implements CommonAdapter.IBaseViewHolder {
+public class NoObjViewHolder implements CommonAdapter.IBaseItemViewHolder {
     public TextView name;
     public TextView age;
     public TextView msg;

@@ -28,10 +28,10 @@
 ##### 三、自定义 MutilObjViewHolderHelper，分两种情况
 #### 3.1 传递一个简单的实体类对象
 
-######  继承自CommonAdapter.`IHolderHelperCallback< T，B >`，来实现 viewholder的实例化和数据绑定。
+######  继承自CommonAdapter.`IDataItemViewHolderHelper< T，B >`，来实现 viewholder的实例化和数据绑定。
 #### 3.2 传递一个List对象
 
-######  继承自CommonAdapter.`IListHolderHelperCallback< T，B >`，来实现 viewholder的实例化和数据绑定。
+######  继承自CommonAdapter.`IListDataViewHolderHelper< T，B >`，来实现 viewholder的实例化和数据绑定。
 ##### 3.3 泛型参数说明
 
 
@@ -63,29 +63,30 @@
     * 实例化你的viewholder
     * 将数据和viewholder的控件绑定
     * */
-    public class ListDataViewHolderHelper implements CommonAdapter.IListHolderHelperCallback<ListDataViewHolder,BeanMutilObjI.DataBean> {
+    public class ListDataViewDataViewHolderHelper implements CommonAdapter.IListDataViewHolderHelper<ListDataViewHolder,BeanMutilObjI.DataBean> {
 
-    @Override
-    public CommonAdapter.IBaseViewHolder initViewHolder(ListDataViewHolder viewHolder, @NonNull View convertView) {
-    viewHolder = new ListDataViewHolder();
+        @Override
+        public CommonAdapter.IBaseItemViewHolder initItemViewHolder(ListDataViewHolder viewHolder, @NonNull View convertView) {
+            viewHolder = new ListDataViewHolder();
 
-    viewHolder.name = UtilWidget.getView(convertView, R.id.id_name);
-    viewHolder.description = UtilWidget.getView(convertView,R.id.id_description);
-    viewHolder.learner = UtilWidget.getView(convertView,R.id.id_learner);
-    viewHolder.picSmall = UtilWidget.getView(convertView,R.id.id_picSmall);
+            viewHolder.name = UtilWidget.getView(convertView, R.id.id_name);
+            viewHolder.description = UtilWidget.getView(convertView,R.id.id_description);
+            viewHolder.learner = UtilWidget.getView(convertView,R.id.id_learner);
+            viewHolder.picSmall = UtilWidget.getView(convertView,R.id.id_picSmall);
 
-    return viewHolder;
+            return viewHolder;
+        }
+
+        @Override
+        public void bindListDataToView(Context context, List<BeanMutilObjI.DataBean> iBaseBeanList, ListDataViewHolder viewHolder, int position) {
+            viewHolder.name.setText(iBaseBeanList.get(position).getName());//这个地方自己可以优化的，不必要每次获取list
+            viewHolder.description.setText(iBaseBeanList.get(position).getDescription());
+            viewHolder.learner.setText("人数："+iBaseBeanList.get(position).getLearner());
+            UtilImageloader.setImage(context,iBaseBeanList.get(position).getPicSmall(),viewHolder.picSmall);
+        }
+
     }
 
-    @Override
-    public void bindListDataToView(Context context, List<BeanMutilObjI.DataBean> iBaseBeanList, ListDataViewHolder viewHolder, int position) {
-    viewHolder.name.setText(iBaseBeanList.get(position).getName());//这个地方自己可以优化的，不必要每次获取list
-    viewHolder.description.setText(iBaseBeanList.get(position).getDescription());
-    viewHolder.learner.setText("人数："+iBaseBeanList.get(position).getLearner());
-    UtilImageloader.setImage(context,iBaseBeanList.get(position).getPicSmall(),viewHolder.picSmall);
-    }
-
-     }
 
 
 ### 4、给AdapterView(如 ListView)配置 Adapter
@@ -96,23 +97,36 @@
 
 #####4.1、 第一种构造函数（本demo使用的就是这种）
 
-        /** 传过来一个数据实体类时，当你用Gson时，你可以不用写list
-            * 直接将json数据，转换为bean对象；然后将bean对象传递进来
-            * param context 上下文
-            * param iBaseBean 数据集
-            * param itemViewLayout （item的布局文件）
-            * param listDataSize(bean 中 包含的list的大小)
-            * param iHolderHelperCallback （viewholder的接口）
-            */
-
+     /** 传过来一个数据实体类时，当你用Gson时，你可以不用写list
+      * 直接将json数据，转换为bean对象；然后将bean对象传递进来
+      * param context 上下文
+      * param iBaseBean 数据集（内含list）
+      * param itemViewLayout （item的布局文件）
+      * param listDataSize(bean 中 包含的list的大小,如果该bean里含有list,则需将list的大小传递进来；
+      * 如果没有，则传 1)
+      * param dataItemViewHolderHelper （viewholder的接口）
+      */
+     public CommonAdapter(Context context, IBaseBean iBaseBean,int listDataSize,int itemViewLayout, IDataItemViewHolderHelper dataItemViewHolderHelper) {
+         mContext = context;
+         mIBaseBean = iBaseBean;
+         mItemViewLayout = itemViewLayout;
+         mHolderCallback = dataItemViewHolderHelper;
+         listSize = listDataSize;
+     }
 #####4.2、第二种构造函数（自己的项目中用到了这个）
 
-        /**
-        * @param context 上下文
-        * @param iBaseBeanList 数据集（list的形式传递过来）
-        * @param itemViewLayout （item的布局文件）
-        * @param iListHolderHelperCallback （viewholder的接口）
-        */
+          /**
+           * param context 上下文
+           * param iBaseBeanList 数据集（list的形式传递过来）
+           * param itemViewLayout （item的布局文件）
+           * param iListDataViewHolderHelper （viewholder的接口）
+           */
+          public CommonAdapter(Context context, List<BEAN> iBaseBeanList, int itemViewLayout, IListDataViewHolderHelper iListDataViewHolderHelper) {
+              mContext = context;
+              mIBaseBeanList = iBaseBeanList;
+              mItemViewLayout = itemViewLayout;
+              mIListDataViewHolderHelper = iListDataViewHolderHelper;
+          }
 
 
 
