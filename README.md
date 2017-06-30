@@ -57,7 +57,7 @@
      * @function
      */
 
-    public class AppViewHolderHelper implements IListDataViewHolderHelperI<AppViewHolder,MyAppInfoBean> {
+    public class AppViewHolderHelper implements IListDataViewHolderHelper<AppViewHolder,MyAppInfoBean> {
 
 
         @Override
