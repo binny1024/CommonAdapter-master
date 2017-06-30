@@ -1,14 +1,13 @@
 package com.adapter.smart.bean;
 
-import com.smart.holder_library.CommonAdapter;
-
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by smart on 2017/4/24.
  */
 
-public class BeanMutilObjI implements CommonAdapter.IBaseBean {
+public class BeanMutilObjI implements Serializable {
 
 
     /**
@@ -45,7 +44,7 @@ public class BeanMutilObjI implements CommonAdapter.IBaseBean {
         this.data = data;
     }
 
-    public static class DataBean implements CommonAdapter.IBaseBean {
+    public static class DataBean implements Serializable {
         /**
          * id : 1
          * name : Tony老师聊shell——环境变量配置文件

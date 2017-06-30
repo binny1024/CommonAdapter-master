@@ -1,12 +1,12 @@
 package com.adapter.smart.bean;
 
-import com.smart.holder_library.CommonAdapter;
+import java.io.Serializable;
 
 /**
  * Created by smart on 2017/4/26.
  */
 
-public class BeanOneObjI implements CommonAdapter.IBaseBean {
+public class BeanOneObjI implements Serializable {
 
     /**
      * status : 1

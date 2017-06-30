@@ -7,15 +7,16 @@ import android.view.View;
 import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanOneObjI;
 import com.adapter.smart.utils.UtilWidget;
-import com.smart.holder_library.CommonAdapter;
+import com.smart.holder_library.callback.IBaseItemViewHolder;
+import com.smart.holder_library.callback.IDataItemViewHolderHelper;
 
 /**
  * Created by smart on 2017/4/26.
  */
 
-public class OneObjIDataViewHolderHelper implements CommonAdapter.IDataItemViewHolderHelper<NoObjViewHolder,BeanOneObjI> {
+public class OneObjIDataViewHolderHelper implements IDataItemViewHolderHelper<NoObjViewHolder,BeanOneObjI> {
     @Override
-    public CommonAdapter.IBaseItemViewHolder initItemViewHolder(NoObjViewHolder viewHolder, @NonNull View convertView) {
+    public IBaseItemViewHolder initItemViewHolder(NoObjViewHolder viewHolder, @NonNull View convertView) {
         viewHolder = new NoObjViewHolder();
         viewHolder.name = UtilWidget.getView(convertView, R.id.id_name);
         viewHolder.age = UtilWidget.getView(convertView,R.id.id_age);

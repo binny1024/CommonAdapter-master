@@ -8,7 +8,8 @@ import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanMutilObjI;
 import com.adapter.smart.utils.UtilImageloader;
 import com.adapter.smart.utils.UtilWidget;
-import com.smart.holder_library.CommonAdapter;
+import com.smart.holder_library.callback.IBaseItemViewHolder;
+import com.smart.holder_library.callback.IListDataViewHolderHelper;
 
 import java.util.List;
 
@@ -20,10 +21,10 @@ import java.util.List;
 * 实例化你的viewholder
 * 将数据和viewholder的控件绑定
 * */
-public class ListDataViewDataViewHolderHelper implements CommonAdapter.IListDataViewHolderHelper<ListDataViewHolder,BeanMutilObjI.DataBean> {
+public class ListDataViewDataViewHolderHelper implements IListDataViewHolderHelper<ListDataViewHolder,BeanMutilObjI.DataBean> {
 
     @Override
-    public CommonAdapter.IBaseItemViewHolder initItemViewHolder(ListDataViewHolder viewHolder, @NonNull View convertView) {
+    public IBaseItemViewHolder initItemViewHolder(ListDataViewHolder viewHolder, @NonNull View convertView) {
         viewHolder = new ListDataViewHolder();
 
         viewHolder.name = UtilWidget.getView(convertView, R.id.id_name);

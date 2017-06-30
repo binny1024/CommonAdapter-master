@@ -4,7 +4,8 @@ import com.adapter.smart.model.IDataResult;
 import com.adapter.smart.model.IModelJsonData;
 import com.adapter.smart.model.ModelJsonData;
 import com.adapter.smart.view.IShowData;
-import com.smart.holder_library.CommonAdapter;
+
+import java.io.Serializable;
 
 /**
  * Created by smart on 2017/4/27.
@@ -28,9 +29,10 @@ public class PresenterJsonData {
 
         mIModelJsonData.getLocalDataList(tag,dataSource, new IDataResult() {
 
+
             @Override
-            public void success( CommonAdapter.IBaseBean iBaseBean) {
-                mIShowData.showList(iBaseBean);
+            public void success(Serializable bean) {
+                mIShowData.showList(bean);
             }
 
             @Override
@@ -46,8 +48,9 @@ public class PresenterJsonData {
      */
     public void getJsonNet(final int tag,String dataSource) {
         mIModelJsonData.getNetDataList(tag, dataSource, new IDataResult() {
+
             @Override
-            public void success( CommonAdapter.IBaseBean bean) {
+            public void success(Serializable bean) {
                 mIShowData.showList(bean);
             }
 

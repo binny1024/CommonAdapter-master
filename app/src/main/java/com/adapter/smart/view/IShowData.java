@@ -1,7 +1,7 @@
 package com.adapter.smart.view;
 
 
-import com.smart.holder_library.CommonAdapter;
+import java.io.Serializable;
 
 /**
  * Created by smart on 2017/4/27.
@@ -10,7 +10,7 @@ import com.smart.holder_library.CommonAdapter;
 /*
 * view层接口
 * */
-public interface IShowData<T extends CommonAdapter.IBaseBean> {
+public interface IShowData<T extends Serializable> {
     void showList(T bean);
     void showError(String msg);
 }
