@@ -76,6 +76,9 @@
     }
 
 
+#### 4配置适配器
+    mListView.setAdapter(new CommonAdapter<MyAppInfoBean>(AppInfoActivity.this,mItemBeanList,R.layout.app_info_item_layout,new AppViewHolderHelper()));
+
 
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
