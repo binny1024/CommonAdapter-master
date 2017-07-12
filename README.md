@@ -124,7 +124,7 @@
 	import android.widget.ImageView;
 	import android.widget.TextView;
 
-	import com.smart.holder_library.callback.IBaseItemViewHolder;
+	import com.smart.holder_library.callback.IViewHolder;
 
 
 	/**
@@ -152,8 +152,8 @@
 	import com.adapter.smart.bean.BeanMutilObjI;
 	import com.adapter.smart.utils.UtilImageloader;
 	import com.adapter.smart.utils.UtilWidget;
-	import com.smart.holder_library.callback.IBaseItemViewHolder;
-	import com.smart.holder_library.callback.IListDataViewHolderHelper;
+	import com.smart.holder_library.callback.IViewHolder;
+	import com.smart.holder_library.callback.IViewHolderHelper;
 
 	import java.util.List;
 

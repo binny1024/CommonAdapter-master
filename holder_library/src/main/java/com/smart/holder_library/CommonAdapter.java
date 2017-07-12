@@ -6,11 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.smart.holder_library.callback.IBaseItemViewHolder;
-import com.smart.holder_library.callback.IDataItemViewHolderHelper;
-import com.smart.holder_library.callback.IListDataViewHolderHelper;
+import com.smart.holder_library.callback.IViewHolder;
+import com.smart.holder_library.callback.IViewHolderHelper;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,12 +23,9 @@ import java.util.List;
 public class CommonAdapter<BEAN extends java.io.Serializable> extends BaseAdapter {
     protected final int mItemViewLayout;//item布局文件
     protected Context mContext;
-    protected IBaseItemViewHolder mBaseViewHolder;
-    protected IDataItemViewHolderHelper mDataItemViewHolderHelper;
-    protected IListDataViewHolderHelper mListDataViewHolderHelper;
-    protected Serializable mIBaseBean;
+    protected IViewHolder mBaseViewHolder;
+    protected IViewHolderHelper mHolderHelper;
     protected List<BEAN> mIBaseBeanList;
-    protected int listSize;
 
     /** 传过来一个数据实体类时，当你用Gson时，你可以不用写list
      * 直接将json数据，转换为bean对象；然后将bean对象传递进来
@@ -40,12 +36,15 @@ public class CommonAdapter<BEAN extends java.io.Serializable> extends BaseAdapte
      * 如果没有，则传 1)
      * param dataItemViewHolderHelper （viewholder的接口）
      */
-    public CommonAdapter(Context context, Serializable iBaseBean, int listDataSize, int itemViewLayout, IDataItemViewHolderHelper dataItemViewHolderHelper) {
+    public CommonAdapter(Context context, BEAN iBaseBean,  int itemViewLayout, IViewHolderHelper iViewHolderHelper) {
         mContext = context;
-        mIBaseBean = iBaseBean;
+
+        mIBaseBeanList = new ArrayList<>();
+        mIBaseBeanList.add(iBaseBean);
+
         mItemViewLayout = itemViewLayout;
-        mDataItemViewHolderHelper = dataItemViewHolderHelper;
-        listSize = listDataSize;
+        mHolderHelper = iViewHolderHelper;
+
     }
 
 
@@ -53,18 +52,18 @@ public class CommonAdapter<BEAN extends java.io.Serializable> extends BaseAdapte
      * param context 上下文
      * param iBaseBeanList 数据集（list的形式传递过来）
      * param itemViewLayout （item的布局文件）
-     * param iListDataViewHolderHelper （viewholder的接口）
+     * param iViewHolderHelper （viewholder的接口）
      */
-    public CommonAdapter(Context context, List<BEAN> iBaseBeanList, int itemViewLayout, IListDataViewHolderHelper iListDataViewHolderHelper) {
+    public CommonAdapter(Context context, List<BEAN> iBaseBeanList, int itemViewLayout, IViewHolderHelper iViewHolderHelper) {
         mContext = context;
         mIBaseBeanList = iBaseBeanList;
         mItemViewLayout = itemViewLayout;
-        mListDataViewHolderHelper = iListDataViewHolderHelper;
+        mHolderHelper = iViewHolderHelper;
     }
 
     @Override
     public int getCount() {
-        return mIBaseBeanList==null?listSize:mIBaseBeanList.size();
+        return mIBaseBeanList==null?0:mIBaseBeanList.size();
     }
 
     @Override
@@ -82,21 +81,12 @@ public class CommonAdapter<BEAN extends java.io.Serializable> extends BaseAdapte
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(mItemViewLayout,parent,false);
-            if (mListDataViewHolderHelper == null) {
-                mBaseViewHolder =  mDataItemViewHolderHelper.initItemViewHolder(mBaseViewHolder,convertView);
-            }else {
-                mBaseViewHolder =  mListDataViewHolderHelper.initItemViewHolder(mBaseViewHolder,convertView);
-            }
-
+            mBaseViewHolder =  mHolderHelper.initItemViewHolder(mBaseViewHolder,convertView);
             convertView.setTag(mBaseViewHolder);
         }else {
-            mBaseViewHolder = (IBaseItemViewHolder)convertView.getTag();
+            mBaseViewHolder = (IViewHolder)convertView.getTag();
         }
-        if (mIBaseBeanList == null) {
-            mDataItemViewHolderHelper.bindDataToView(mContext, mIBaseBean,mBaseViewHolder,position);
-        }else {
-            mListDataViewHolderHelper.bindListDataToView(mContext, mIBaseBeanList,mBaseViewHolder,position);
-        }
+        mHolderHelper.bindListDataToView(mContext, mIBaseBeanList,mBaseViewHolder,position);
         return convertView;
     }
 

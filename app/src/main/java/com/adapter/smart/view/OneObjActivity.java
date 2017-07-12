@@ -3,7 +3,7 @@ package com.adapter.smart.view;
 import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanOneObjI;
 import com.adapter.smart.presenter.PresenterJsonData;
-import com.adapter.smart.viewholder.OneObjIDataViewHolderHelper;
+import com.adapter.smart.viewholder.OneObjectViewHolderHelper;
 import com.smart.holder_library.CommonAdapter;
 
 import static com.adapter.smart.constants.ConstantUrl.ONE_OBJECT;
@@ -18,7 +18,7 @@ public class OneObjActivity extends BaseActivity implements IShowData<BeanOneObj
 
     @Override
     public void showList(BeanOneObjI bean) {
-        mListView.setAdapter(new CommonAdapter(mContext, bean,1, R.layout.no_obj_item, new OneObjIDataViewHolderHelper()));
+        mListView.setAdapter(new CommonAdapter(mContext, bean, R.layout.no_obj_item, new OneObjectViewHolderHelper()));
     }
 
     @Override

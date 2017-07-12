@@ -8,8 +8,8 @@ import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanMutilObjI;
 import com.adapter.smart.utils.UtilImageloader;
 import com.adapter.smart.utils.UtilWidget;
-import com.smart.holder_library.callback.IBaseItemViewHolder;
-import com.smart.holder_library.callback.IListDataViewHolderHelper;
+import com.smart.holder_library.callback.IViewHolder;
+import com.smart.holder_library.callback.IViewHolderHelper;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ import java.util.List;
 * 实例化你的viewholder
 * 将数据和viewholder的控件绑定
 * */
-public class ListDataViewDataViewHolderHelper implements IListDataViewHolderHelper<ListDataViewHolder,BeanMutilObjI.DataBean> {
+public class ListDataViewHolderHelper implements IViewHolderHelper<ListDataViewHolder,BeanMutilObjI.DataBean> {
 
     @Override
-    public IBaseItemViewHolder initItemViewHolder(ListDataViewHolder viewHolder, @NonNull View convertView) {
+    public IViewHolder initItemViewHolder(ListDataViewHolder viewHolder, @NonNull View convertView) {
         viewHolder = new ListDataViewHolder();
 
         viewHolder.name = UtilWidget.getView(convertView, R.id.id_name);
@@ -42,6 +42,4 @@ public class ListDataViewDataViewHolderHelper implements IListDataViewHolderHelp
         viewHolder.learner.setText("人数："+iBaseBeanList.get(position).getLearner());
         UtilImageloader.setImage(context,iBaseBeanList.get(position).getPicSmall(),viewHolder.picSmall);
     }
-
-
 }

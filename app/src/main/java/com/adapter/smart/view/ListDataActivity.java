@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanMutilObjI;
 import com.adapter.smart.presenter.PresenterJsonData;
-import com.adapter.smart.viewholder.ListDataViewDataViewHolderHelper;
+import com.adapter.smart.viewholder.ListDataViewHolderHelper;
 import com.smart.holder_library.CommonAdapter;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class ListDataActivity extends BaseActivity  implements IShowData<BeanMut
         mAnimationDrawable.stop();
         mImageView.setVisibility(View.GONE);
         mDataBeanList = beanMutilData.getData();
-        mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList, R.layout.list_view_item,new ListDataViewDataViewHolderHelper()));
+        mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList, R.layout.list_view_item,new ListDataViewHolderHelper()));
     }
 
     @Override
