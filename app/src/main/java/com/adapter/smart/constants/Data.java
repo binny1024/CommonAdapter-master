@@ -4,7 +4,7 @@ package com.adapter.smart.constants;
  * Created by smart on 2017/4/24.
  */
 
-public class ConstantUrl {
+public class Data {
     public final static String MOCO_URL="http://www.imooc.com/api/teacher?type=4&num=30";
     public final static String MUTIL_OBJECT = "{\n" +
             "\t\t\"status\": 1,\n" +
@@ -253,21 +253,4 @@ public class ConstantUrl {
             "\t\t\"msg\": \"成功\"\n" +
             "\t}";
 
-    public final static String NO_OBJECT = "{\n" +
-            "    \"status\": 1,\n" +
-            "    \"name\": \"Tony老师聊shell\\u2014\\u2014环境变量配置文件\",\n" +
-            "    \"age\": 12312,\n" +
-            "    \"msg\": \"成功\"\n" +
-            "}";
-    public final static String ONE_OBJECT = "{\n" +
-            "    \"status\": 1,\n" +
-            "    \"data\": \n" +
-            "        {\n" +
-            "           \n" +
-            "            \"name\": \"Tony老师聊shell——环境变量配置文件\",\n" +
-            "          \n" +
-            "            \"age\": 12312\n" +
-            "        },\n" +
-            "    \"msg\": \"成功\"\n" +
-            "}";
 }

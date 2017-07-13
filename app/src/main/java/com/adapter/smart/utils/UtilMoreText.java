@@ -1,4 +1,4 @@
-package com.smart.holder_library.utils;
+package com.adapter.smart.utils;
 
 
 import android.graphics.Color;
@@ -12,24 +12,31 @@ import android.widget.TextView;
 
 /**
  * Created by xbb on 2017/5/10.
+ * 使用说明 new UtilMoreText().setClickableSpan(tv2,msg);
  */
 
-/*
-* 简单的富文本工具类
-*
-* 使用说明 new UtilMoreText().setClickableSpan(tv2,msg);
-* */
+
 public class UtilMoreText  {
 
+    /**
+     *
+     */
     private OnSpanTextClickListener mSpanTextClickListener;
 
-    private TextView mTextView;//显示富文本的控件
-    private String mOriMsg;//全部文本信息
+    /**
+     * 显示富文本的控件
+     */
+    private TextView mTextView;
+    /**
+     * 全部文本信息
+     */
+    private String mOriMsg;
 
     private boolean spread =true;
     private int mStartPos;
     private int mEndPos;
     private Integer mSpanTextColor;
+    private String mText;
     private Integer mCharNum;
 
     public UtilMoreText(TextView textView, String oriMsg) {
@@ -43,6 +50,19 @@ public class UtilMoreText  {
         mCharNum = charNum;
         return this;
     }
+
+    /** 设置结尾文字
+     * @param text
+     * @return
+     */
+    public UtilMoreText setEndText(String text){
+        mText = text;
+        return this;
+    }
+    /** 设置颜色
+     * @param spanTextColor
+     * @return
+     */
     public UtilMoreText setSpanTextColor(int spanTextColor){
         mSpanTextColor = spanTextColor;
         return this;

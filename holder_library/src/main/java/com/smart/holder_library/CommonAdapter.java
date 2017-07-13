@@ -6,47 +6,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.smart.holder_library.callback.IViewHolder;
-import com.smart.holder_library.callback.IViewHolderHelper;
+import com.smart.holder_library.iinterface.IViewHolder;
+import com.smart.holder_library.iinterface.IViewHolderHelper;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
 
 
 /**
  * Created by xubinbin on 2017/4/24.
- * function 封装adapter，是viewholder和adapter分离
- *
+ * function 封装adapter
  */
 
-public class CommonAdapter<BEAN extends java.io.Serializable> extends BaseAdapter {
+public class CommonAdapter<BEAN extends Serializable> extends BaseAdapter {
     protected final int mItemViewLayout;//item布局文件
     protected Context mContext;
     protected IViewHolder mBaseViewHolder;
     protected IViewHolderHelper mHolderHelper;
     protected List<BEAN> mIBaseBeanList;
-
-    /** 传过来一个数据实体类时，当你用Gson时，你可以不用写list
-     * 直接将json数据，转换为bean对象；然后将bean对象传递进来
-     * param context 上下文
-     * param iBaseBean 数据集（内含list）
-     * param itemViewLayout （item的布局文件）
-     * param listDataSize(bean 中 包含的list的大小,如果该bean里含有list,则需将list的大小传递进来；
-     * 如果没有，则传 1)
-     * param dataItemViewHolderHelper （viewholder的接口）
-     */
-    public CommonAdapter(Context context, BEAN iBaseBean,  int itemViewLayout, IViewHolderHelper iViewHolderHelper) {
-        mContext = context;
-
-        mIBaseBeanList = new ArrayList<>();
-        mIBaseBeanList.add(iBaseBean);
-
-        mItemViewLayout = itemViewLayout;
-        mHolderHelper = iViewHolderHelper;
-
-    }
-
 
     /**
      * param context 上下文

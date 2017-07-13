@@ -8,17 +8,6 @@
     android:orientation="vertical"
     android:padding="20dp"
     tools:context="com.adapter.smart.view.MainActivity">
-
-    <Button
-        android:id="@+id/id_no_obj"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/no_obj"/>
-    <Button
-        android:id="@+id/id_one_obj"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/one_obj"/>
     <Button
         android:id="@+id/id_mutil_obj"
         android:layout_width="match_parent"

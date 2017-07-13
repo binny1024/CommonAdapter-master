@@ -4,29 +4,26 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.adapter.smart.R;
-import com.adapter.smart.bean.BeanMutilObjI;
-import com.adapter.smart.presenter.PresenterJsonData;
+import com.adapter.smart.bean.MoocBean;
+import com.adapter.smart.presenter.PresenterData;
 import com.adapter.smart.viewholder.ListDataViewHolderHelper;
 import com.smart.holder_library.CommonAdapter;
 
 import java.util.List;
 
-import static com.adapter.smart.constants.ConstantUrl.MUTIL_OBJECT;
-import static com.adapter.smart.constants.DataType.DATA_TYPE_MUTIL;
+import static com.adapter.smart.constants.Data.MUTIL_OBJECT;
 
-public class ListDataActivity extends BaseActivity  implements IShowData<BeanMutilObjI> {
+public class ListDataActivity extends BaseActivity  implements IShowData<MoocBean> {
 
-    private List<BeanMutilObjI.DataBean> mDataBeanList;
+    private List<MoocBean.DataBean> mDataBeanList;
     @Override
     public void initPresenter() {
-//       mListView = UtilWidget.getView(this,R.id.id_listview);
-        new PresenterJsonData(this).getJsonLocal(DATA_TYPE_MUTIL,MUTIL_OBJECT);//取本地字符串
-//        new PresenterJsonData(this).getJsonNet(DATA_TYPE_MUTIL,MOCO_URL);//取本地字符串
+        new PresenterData(this).getJsonLocal(MUTIL_OBJECT);//取本地字符串
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public void showList(BeanMutilObjI beanMutilData) {
+    public void showList(MoocBean beanMutilData) {
         mAnimationDrawable.stop();
         mImageView.setVisibility(View.GONE);
         mDataBeanList = beanMutilData.getData();
