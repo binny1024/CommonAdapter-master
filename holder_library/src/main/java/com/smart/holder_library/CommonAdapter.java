@@ -20,11 +20,11 @@ import java.util.List;
  */
 
 public class CommonAdapter<BEAN extends Serializable> extends BaseAdapter {
-    protected final int mItemViewLayout;//item布局文件
-    protected Context mContext;
-    protected IViewHolder mBaseViewHolder;
-    protected IViewHolderHelper mHolderHelper;
-    protected List<BEAN> mIBaseBeanList;
+    private final int mItemViewLayout;//item布局文件
+    private Context mContext;
+    private IViewHolder mBaseViewHolder;
+    private IViewHolderHelper mHolderHelper;
+    private List<BEAN> mIBaseBeanList;
 
     /**
      * param context 上下文

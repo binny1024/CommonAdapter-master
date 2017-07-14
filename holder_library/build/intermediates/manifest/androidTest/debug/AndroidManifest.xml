@@ -3,7 +3,7 @@
     package="com.smart.holder_library.test" >
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="8"
         android:targetSdkVersion="25" />
 
     <instrumentation
