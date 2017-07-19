@@ -1,7 +1,5 @@
 ## 具体用法请下载demo查看里面的注释说明
     引用方式 compile 'com.smart.holder_library:holder_library:1.1.5'
-
-
 ## 通用 viewholder的 CommonAdapter 使用
 ### 1、准备数据：编写 JavaBean，必须实现 Serializable 接口。
 	package com.adapter.smart.bean;
@@ -188,4 +186,5 @@
 	mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList, R.layout.list_view_item,new ListDataViewHolderHelper()));
 
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
+![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/pay.jpg)
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
