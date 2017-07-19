@@ -185,5 +185,5 @@
 #####4.2、使用
 	mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList, R.layout.list_view_item,new ListDataViewHolderHelper()));
 ###5、如果可以，鼓励一下码农，一分一毛也是爱啊
-![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/pay.jpg)
+![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/pay.png)
 
