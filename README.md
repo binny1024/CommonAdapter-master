@@ -3,17 +3,13 @@
 ## 通用 viewholder的 CommonAdapter 使用
 ### 1、准备数据：编写 JavaBean，必须实现 Serializable 接口。
 	package com.adapter.smart.bean;
-
 	import java.io.Serializable;
 	import java.util.List;
-
 	/**
 	 * Created by smart on 2017/4/24.
 	 */
 
 	public class MoocBean implements Serializable {
-
-
 	    private int status;
 	    private String msg;
 	    private List<DataBean> data;
@@ -170,8 +166,6 @@
 	        UtilImageloader.setImage(context,iBaseBeanList.get(position).getPicSmall(),viewHolder.picSmall);
 	    }
 	}
-
-
 
 #### 4、配置适配器
 #####4.1、函数说明
