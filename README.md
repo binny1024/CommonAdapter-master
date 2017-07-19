@@ -118,7 +118,7 @@
 	    public ImageView picSmall;
 	}
 ### 3、自定义 ViewHolderHelper， 传递一个List对象,IViewHolderHelper< VH，BEAN >，来实现 viewholder的实例化和数据绑定。
-####参数说明：
+#### 参数说明：
 ##### T ，也就是你自定义的自定义viewholder；
 ##### B ，也就是实现序列化接口的实体类；
 	package com.adapter.smart.viewholder;
@@ -168,7 +168,7 @@
 	}
 
 #### 4、配置适配器
-#####4.1、函数说明
+##### 4.1、函数说明
     /**
      * param context 上下文
      * param iBaseBeanList 数据集（list的形式传递过来）
@@ -176,9 +176,9 @@
      * param iViewHolderHelper （viewholder的接口）
      */
     public CommonAdapter(Context context, List<BEAN> iBaseBeanList, int itemViewLayout, IViewHolderHelper iViewHolderHelper) {}
-#####4.2、使用
+##### 4.2、使用
 	mListView.setAdapter(new CommonAdapter(mContext, mDataBeanList, R.layout.list_view_item,new ListDataViewHolderHelper()));
 
-###5、亲们，如果觉得还行，鼓励一下码农吧，一分一毛也是爱呢
+### 5、亲们，如果觉得还行，鼓励一下码农吧，一分一毛也是爱呢
 ![](https://github.com/xubinbin1024/CommonAdapter-master/blob/master/img/pay.png)
 
