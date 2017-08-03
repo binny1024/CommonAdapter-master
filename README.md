@@ -1,5 +1,5 @@
 ## 具体用法请下载demo查看里面的注释说明
-    引用方式 compile 'com.smart.holder_library:holder_library:1.1.5'
+    引用方式 compile 'com.bean.list_grid_view:adapter:1.0.0'
 ## 通用 viewholder的 CommonAdapter 使用
 ### 1、准备数据：编写 JavaBean，必须实现 Serializable 接口。
 	package com.adapter.smart.bean;

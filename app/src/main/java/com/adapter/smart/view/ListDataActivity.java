@@ -7,7 +7,7 @@ import com.adapter.smart.R;
 import com.adapter.smart.bean.MoocBean;
 import com.adapter.smart.presenter.PresenterData;
 import com.adapter.smart.viewholder.ListDataViewHolderHelper;
-import com.smart.holder_library.CommonAdapter;
+import com.smart.holder.CommonAdapter;
 
 import java.util.List;
 

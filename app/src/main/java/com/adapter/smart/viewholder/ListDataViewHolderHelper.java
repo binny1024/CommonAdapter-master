@@ -7,8 +7,8 @@ import android.view.View;
 import com.adapter.smart.R;
 import com.adapter.smart.bean.MoocBean;
 import com.adapter.smart.utils.UtilImageloader;
-import com.smart.holder_library.iinterface.IViewHolder;
-import com.smart.holder_library.iinterface.IViewHolderHelper;
+import com.smart.holder.iinterface.IViewHolder;
+import com.smart.holder.iinterface.IViewHolderHelper;
 import com.adapter.smart.utils.UtilWidget;
 
 import java.util.List;

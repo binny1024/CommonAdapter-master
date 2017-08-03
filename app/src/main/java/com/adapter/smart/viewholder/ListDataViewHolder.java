@@ -3,7 +3,7 @@ package com.adapter.smart.viewholder;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.smart.holder_library.iinterface.IViewHolder;
+import com.smart.holder.iinterface.IViewHolder;
 
 
 /**
