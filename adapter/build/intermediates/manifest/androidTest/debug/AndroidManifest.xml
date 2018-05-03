@@ -13,7 +13,7 @@
         android:label="Tests for com.smart.holder.test"
         android:targetPackage="com.smart.holder.test" />
 
-    <application>
+    <application android:debuggable="true" >
         <uses-library android:name="android.test.runner" />
     </application>
 
